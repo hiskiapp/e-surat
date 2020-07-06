@@ -4,7 +4,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/hiskiia/e-surat)](https://github.com/hiskiia/e-surat/stargazers)
 [![GitHub license](https://img.shields.io/github/license/hiskiia/e-surat)](https://github.com/hiskiia/e-surat)
 
-## WHAT IS SIABSENSI?
+## WHAT IS E-SURAT?
 E-Surat is Online Village Letter Submission Website.
 
 ## System Requirement
