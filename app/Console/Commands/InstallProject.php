@@ -42,7 +42,7 @@ class InstallProject extends Command
 
         if ($this->confirm('Do you have setting the database configuration at .env ?')) {
             $this->info('Migrating database...');
-            $this->call('migrate');
+            $this->call('migrate:fresh');
             $this->call('db:seed');
             $this->call('key:generate');
             $this->call('config:clear');
