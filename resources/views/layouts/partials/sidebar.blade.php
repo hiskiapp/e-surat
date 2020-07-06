@@ -17,13 +17,13 @@
                 </li>
                 <li>
                     <a href="{{ route('account') }}" class="waves-effect">
-                        <i class="ti-calendar"></i>
+                        <i class="mdi mdi-clipboard-list-outline"></i>
                         <span>Data Diri</span>
                     </a>
                 </li>
                 <li>
                     <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="waves-effect">
-                        <i class="ti-calendar"></i>
+                        <i class="mdi mdi-logout"></i>
                         <span>{{ __('Logout') }}</span>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

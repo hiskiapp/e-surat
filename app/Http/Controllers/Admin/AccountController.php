@@ -4,47 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Admin;
+use App\ActivityLog;
+use App\Rules\MatchOldPassword;
 use Illuminate\Http\Request;
-use App\Http\Requests\AccountRequest;
 use Activity;
+use Hash;
 
 class AccountController extends Controller
 {
-    public function index()
-	{
-		$user = User::find(auth('admin')->user()->id);
-
-		return view('admin.account.index', ['user' => $user]);
-	}
-
-	public function update(AccountRequest $request)
-	{
-        $data = User::find(auth('admin')->user()->id);
-
-        if ($request->hasFile('photo')) {
-            $file = $request->file('photo');
-            $path = 'uploads/' . auth()->user()->id . '/' . time() . '.' . $file->getClientOriginalExtension();
-            $image = Image::make($file)->resize(300, 300);
-            $image->save(public_path($path));
-            $data->photo = $path;
-        }
-
-        $data->name = $request->name;
-        $data->save();
-
-        Activity::add(['page' => 'Account', 'description' => 'Memperbarui Data Akun']);
-
-        return back()->with([
-            'status' => 'success', 
-            'message' => 'Memperbarui Data Akun!'
-        ]);
-
-	public function changePassword()
+	public function password()
 	{
 		return view('admin.account.password');
 	}
 
-	public function patchChangePassword(Request $request)
+	public function patchPassword(Request $request)
 	{
 		$request->validate([
             'current_password' => ['required', new MatchOldPassword],

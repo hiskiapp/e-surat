@@ -11,7 +11,7 @@
 
                 <li>
                     <a href="{{ route('admin.home') }}" class="waves-effect">
-                        <i class="ti-home"></i><span class="badge badge-pill badge-primary float-right">2</span>
+                        <i class="ti-home"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -22,29 +22,29 @@
                         <span>Pengajuan Surat</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="email-inbox">
-                            <span class="badge badge-pill badge-primary float-right">2</span> Menunggu Persetujuan </a></li>
-                            <li><a href="email-read">Disetujui</a></li>
-                            <li><a href="email-compose">Ditolak</a></li>
+                        <li><a href="{{ route('admin.submissions.pending') }}">
+                            <span class="badge badge-pill badge-primary float-right">{{ pendingSubmissions() }}</span> Menunggu Persetujuan </a></li>
+                            <li><a href="{{ route('admin.submissions.approved') }}">Disetujui</a></li>
+                            <li><a href="{{ route('admin.submissions.rejected') }}">Ditolak</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-title">Master Data</li>
                     <li>
                         <a href="{{ route('admin.data.index') }}" class=" waves-effect">
-                            <i class="ti-calendar"></i>
+                            <i class="ti-user"></i>
                             <span>Data Admin</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.users.index') }}" class=" waves-effect">
-                            <i class="ti-calendar"></i>
+                            <i class="ti-agenda"></i>
                             <span>Data Warga</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.letters.index') }}" class=" waves-effect">
-                            <i class="ti-calendar"></i>
+                            <i class="ti-receipt"></i>
                             <span>Daftar Surat</span>
                         </a>
                     </li>

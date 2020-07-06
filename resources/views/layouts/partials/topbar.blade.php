@@ -40,11 +40,11 @@
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <!-- item-->
-                <a class="dropdown-item" href="{{ route('account') }}"><i class="mdi mdi-account-circle font-size-17 align-middle mr-1"></i> Data Diri</a>
-                <a class="dropdown-item d-block" href="{{ route('account.password') }}"><i class="mdi mdi-settings font-size-17 align-middle mr-1"></i> Ganti Password</a>
+                <a class="dropdown-item d-block" href="{{ route('account.password') }}"><i class="mdi mdi-shield-lock-outline font-size-17 align-middle mr-1"></i> Ganti Password</a>
+                <a class="dropdown-item" href="{{ route('account.logs') }}"><i class="mdi mdi-folder-text-outline font-size-17 align-middle mr-1"></i> Log Activity</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="bx bx-power-off font-size-17 align-middle mr-1 text-danger"></i>
+                    <i class="mdi mdi-logout font-size-17 align-middle mr-1 text-danger"></i>
                     {{ __('Logout') }}
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

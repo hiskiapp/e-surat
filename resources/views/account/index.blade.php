@@ -71,40 +71,6 @@
     </div>
   </div> <!-- end col -->
 </div> <!-- end row -->
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body">
-
-        <h4 class="card-title">Log Activity</h4>
-        <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Page</th>
-              <th>Description</th>
-              <th>IP</th>
-              <th>Agent</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($logs as $log)
-            <tr>
-              <td>{{ $log->created_at->format('d F Y H:i') }}</td>
-              <td>{{ $log->page }}</td>
-              <td>{{ $log->description }}</td>
-              <td>{{ $log->ip }}</td>
-              <td>{{ $log->agent }}</td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-
-      </div>
-    </div>
-  </div> <!-- end col -->
-</div> <!-- end row -->
-
 @endsection
 
 @section('script')

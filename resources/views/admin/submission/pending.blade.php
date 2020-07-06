@@ -44,6 +44,7 @@
         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
           <thead>
             <tr>
+              <th>Waktu Pengajuan</th>
               <th>Nama</th>
               <th>Jenis Surat</th>
               <th>Action</th>
@@ -52,12 +53,13 @@
           <tbody>
             @foreach($submissions as $submission)
             <tr>
+              <td>{{ $submission->created_at->format('d F Y H:i') }}</td>
               <td>{{ $submission->user->name }}</td>
               <td>{{ $submission->letter->name }}</td>
               <td>
                 <a class="btn btn-sm btn-warning waves-effect waves-light" href="javascript: void(0);" role="button"><i class="mdi mdi-grease-pencil"></i> Cetak</a>
                 <a class="btn btn-sm btn-primary waves-effect waves-light" href="javascript: void(0);" role="button"><i class="mdi mdi-grease-pencil"></i> Setujui</a>
-                <a class="btn btn-sm btn-info waves-effect waves-light" href="javascript: void(0);" role="button"><i class="mdi mdi mdi-eye-circle"></i> Tolak</a>
+                <a class="btn btn-sm btn-danger waves-effect waves-light" href="javascript: void(0);" role="button"><i class="mdi mdi mdi-eye-circle"></i> Tolak</a>
                 <a class="btn btn-sm btn-info waves-effect waves-light"  href="javascript: void(0);" role="button"><i class="mdi mdi mdi-eye-circle"></i> Detail</a>
               </td>
             </tr>

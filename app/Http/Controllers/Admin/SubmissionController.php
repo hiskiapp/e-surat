@@ -17,10 +17,20 @@ class SubmissionController extends Controller
         return view('admin.submission.pending', ['submissions' => $submissions]);
     }
 
+    public function approved()
+    {
+
+    }
+
+    public function rejected()
+    {
+        
+    }
+
     public function print($id)
     {
     	$submission = Submission::find($id);
 
-    	return view('admin.submission.print', ['submission' => $submission]);
+    	return view('admin.print.'.$submission->letter_id, ['submission' => $submission]);
     }
 }

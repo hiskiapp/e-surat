@@ -29,16 +29,17 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::resource('users', 'UserController');
 		Route::resource('letters', 'LetterController');
 
-		Route::get('submissions/pending', 'SubmissionController@pending')->name('submission.pending');
+		Route::get('submissions/pending', 'SubmissionController@pending')->name('submissions.pending');
+		Route::get('submissions/approved', 'SubmissionController@approved')->name('submissions.approved');
+		Route::get('submissions/rejected', 'SubmissionController@rejected')->name('submissions.rejected');
+		Route::get('submissions/print/{id}', 'SubmissionController@print')->name('submissions.print');
 
 		// Import
 		Route::post('import/data', 'ImportController@admin')->name('import.data');
 
 		// Account
-		Route::get('account', 'AccountController@index')->name('account');
-		Route::patch('account/update', 'AccountController@update')->name('account.update');
-		Route::get('account/change-password', 'AccountController@update')->name('account.password');
-		Route::patch('account/change-password', 'AccountController@update')->name('account.password.update');
+		Route::get('account/password', 'AccountController@password')->name('account.password');
+		Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
 		Route::get('account/logs', 'AccountController@logs')->name('account.logs');
 	});
 });
@@ -59,6 +60,7 @@ Route::group(['middleware' => 'auth'], function()
 
 	// Account
 	Route::get('account', 'AccountController@index')->name('account');
-	Route::get('account/change-password', 'AccountController@changePassword')->name('account.password');
-	Route::patch('account/change-password', 'AccountController@patchChangePassword')->name('account.password.update');
+	Route::get('account/password', 'AccountController@password')->name('account.password');
+	Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
+	Route::get('account/logs', 'AccountController@logs')->name('account.logs');
 });

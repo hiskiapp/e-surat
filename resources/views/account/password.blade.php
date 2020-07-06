@@ -20,7 +20,7 @@
 				<h4 class="card-title">Edit Password</h4>
 				<p class="card-title-desc">Silahkan Isi Form Berikut Dengan Benar.</p>
 				@include('components.message')
-				<form action="{{ route('account.password.update') }}" method="POST" class="custom-validation">
+				<form action="{{ route('account.password') }}" method="POST" class="custom-validation">
 					@csrf
 					@method('PATCH')
 					<div class="form-group row">

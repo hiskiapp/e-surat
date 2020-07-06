@@ -40,11 +40,12 @@
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <!-- item-->
-                <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle font-size-17 align-middle mr-1"></i> Profile</a>
-                <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="mdi mdi-settings font-size-17 align-middle mr-1"></i> Settings</a>
+                <a class="dropdown-item" href="{{ route('admin.account.password') }}"><i class="mdi mdi-shield-alert-outline font-size-17 align-middle mr-1"></i> Change Password</a>
+                <a class="dropdown-item" href="{{ route('admin.account.logs') }}"><i class="mdi mdi-format-list-bulleted-square font-size-17 align-middle mr-1"></i> Log Activity</a>
+                <a class="dropdown-item d-block" href="#"><i class="mdi mdi-settings font-size-17 align-middle mr-1"></i> Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item text-danger" href="javascript:void();" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="bx bx-power-off font-size-17 align-middle mr-1 text-danger"></i>
+                    <i class="mdi mdi-logout font-size-17 align-middle mr-1 text-danger"></i>
                     {{ __('Logout') }}
                 </a>
                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">

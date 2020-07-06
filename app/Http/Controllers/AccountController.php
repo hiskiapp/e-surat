@@ -14,20 +14,15 @@ class AccountController extends Controller
     public function index()
 	{
 		$user = auth()->user();
-		$logs = ActivityLog::orderBy('created_at', 'desc')
-        ->where('user_type', 'user')
-        ->where('user_id', auth()->user()->id)
-        ->get();
-
-		return view('account.index', ['user' => $user, 'logs' => $logs]);
+		return view('account.index', ['user' => $user]);
 	}
 
-	public function changePassword()
+	public function password()
 	{
-		return view('account.change-password');
+		return view('account.password');
 	}
 
-	public function patchChangePassword(Request $request)
+	public function patchPassword(Request $request)
 	{
 		$request->validate([
             'current_password' => ['required', new MatchOldPassword],
@@ -46,4 +41,15 @@ class AccountController extends Controller
             'message' => 'Password Berhasil Diubah!'
         ]);
 	}
+
+    public function logs()
+    {
+
+        $logs = ActivityLog::orderBy('created_at', 'desc')
+        ->where('user_type', 'user')
+        ->where('user_id', auth()->user()->id)
+        ->get();
+
+        return view('account.logs', ['logs' => $logs]);
+    }
 }
