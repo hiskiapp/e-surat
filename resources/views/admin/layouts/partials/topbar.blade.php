@@ -40,6 +40,7 @@
             </button>
             <div class="dropdown-menu dropdown-menu-right">
                 <!-- item-->
+                <a class="dropdown-item" href="{{ route('admin.account') }}"><i class="mdi mdi-account-badge-outline font-size-17 align-middle mr-1"></i> Account</a>
                 <a class="dropdown-item" href="{{ route('admin.account.password') }}"><i class="mdi mdi-shield-alert-outline font-size-17 align-middle mr-1"></i> Change Password</a>
                 <a class="dropdown-item" href="{{ route('admin.account.logs') }}"><i class="mdi mdi-format-list-bulleted-square font-size-17 align-middle mr-1"></i> Log Activity</a>
                 <a class="dropdown-item d-block" href="#"><i class="mdi mdi-settings font-size-17 align-middle mr-1"></i> Settings</a>

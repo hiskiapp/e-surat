@@ -22,6 +22,7 @@
 			<div class="card-body">
 				<h4 class="card-title">Form Pengajuan</h4>
 				<p class="card-title-desc">Silahkan Klik Form Surat Yang Tersedia & Isi Dengan Benar</p>
+				@include('components.message')
 				<div id="accordion">
 					<div class="card mb-1">
 						<div class="card-header p-3" id="headingOne">

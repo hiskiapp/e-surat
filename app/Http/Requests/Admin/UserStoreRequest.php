@@ -35,7 +35,7 @@ class UserStoreRequest extends FormRequest
             'birth_date' => 'nullable|date',
             'gender' => 'in:Laki - Laki, Perempuan',
             'address' => 'nullable|min:5',
-            'marital_status' => 'in:Belum Kawin, Kawin',
+            'marital_status' => 'in:Belum Kawin,Kawin',
             'profession' => 'required|min:5|max:255',
         ];
     }

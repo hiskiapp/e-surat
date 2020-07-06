@@ -39,6 +39,8 @@ class AccountRequest extends FormRequest
      */
     public function filters()
     {
-        return [];
+        return [
+            'name' => 'trim|escape|capitalize',
+        ];
     }
 }

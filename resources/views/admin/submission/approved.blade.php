@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Pengajuan Surat: Menunggu Persetujuan')
+@section('title', 'Pengajuan Surat: Disetujui')
 
 @section('css')
 <link href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
@@ -14,7 +14,7 @@
 <div class="row align-items-center">
   <div class="col-sm-6">
     @component('admin.components.breadcumb')
-    @slot('title') Pengajuan Surat: Menunggu Persetujuan  @endslot
+    @slot('title') Pengajuan Surat: Disetujui  @endslot
     @slot('li_1') Admin @endslot
     @endcomponent
   </div>
@@ -39,7 +39,7 @@
     <div class="card">
       <div class="card-body">
 
-        <h4 class="card-title">Pengajuan Surat: Menunggu Persetujuan</h4>
+        <h4 class="card-title">Pengajuan Surat: Disetujui</h4>
         @include('admin.components.message')
         <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
           <thead>
@@ -47,6 +47,8 @@
               <th>Waktu Pengajuan</th>
               <th>Nama</th>
               <th>Jenis Surat</th>
+              <th>Waktu Penyetujuan</th>
+              <th>Disetujui Oleh</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -56,18 +58,10 @@
               <td>{{ $submission->created_at->format('d F Y H:i') }}</td>
               <td>{{ $submission->user->name }}</td>
               <td>{{ $submission->letter->name }}</td>
+              <td>{{ $submission->approval_at->format('d F Y H:i') }}</td>
+              <td>{{ $submission->admin->name }}</td>
               <td>
                 <a class="btn btn-sm btn-warning waves-effect waves-light" href="javascript: void(0);" role="button"><i class="mdi mdi-printer-check"></i> Cetak</a>
-                <form method="POST" action="{{ route('admin.submissions.status', [$submission->id,1]) }}" class="d-inline form-patch">
-                  @csrf
-                  @method('PATCH')
-                  <button type="submit" class="btn btn-sm btn-primary waves-effect waves-light"><i class="mdi mdi-format-horizontal-align-right"></i> Setujui</button>
-                </form>
-                <form method="POST" action="{{ route('admin.submissions.status', [$submission->id,1]) }}" class="d-inline form-patch">
-                  @csrf
-                  @method('PATCH')
-                  <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light"><i class="mdi mdi-format-horizontal-align-left"></i> Tolak</button>
-                </form>
                 <a class="btn btn-sm btn-info waves-effect waves-light"  href="{{ route('admin.submissions.show', $submission->id) }}" role="button"><i class="mdi mdi mdi-eye-circle"></i> Detail</a>
               </td>
             </tr>
@@ -93,7 +87,7 @@
 <script src="{{ URL::asset('assets/js/pages/lightbox.init.js')}}"></script>
 
 <script type="text/javascript">
-  $(document).on('submit', '.form-patch', function (e) {
+  $(document).on('submit', '.form-delete', function (e) {
     var form = this;
     e.preventDefault();
     Swal.fire({
@@ -103,7 +97,7 @@
       showCancelButton: true,
       confirmButtonColor: "#34c38f",
       cancelButtonColor: "#f46a6a",
-      confirmButtonText: "Yes!"
+      confirmButtonText: "Yes, delete it!"
     }).then(function (result) {
       if (result.value) {
         return form.submit();

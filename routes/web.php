@@ -14,10 +14,7 @@
 // Admin Routes
 Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace' => 'Admin'], function()
 {
-	Route::get('/', function(){
-		return redirect('admin/home');
-	});
-
+	Route::get('/', function(){ return redirect('admin/home'); });
 	Route::get('login', 'AuthController@index')->name('login');
 	Route::post('login', 'AuthController@login')->name('login');
 	Route::post('logout', 'AuthController@logout')->name('logout');
@@ -32,25 +29,25 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::get('submissions/pending', 'SubmissionController@pending')->name('submissions.pending');
 		Route::get('submissions/approved', 'SubmissionController@approved')->name('submissions.approved');
 		Route::get('submissions/rejected', 'SubmissionController@rejected')->name('submissions.rejected');
+		Route::get('submissions/show/{id}', 'SubmissionController@show')->name('submissions.show');
+		Route::patch('submissions/status/{id}/{status}', 'SubmissionController@status')->name('submissions.status');
 		Route::get('submissions/print/{id}', 'SubmissionController@print')->name('submissions.print');
 
 		// Import
 		Route::post('import/data', 'ImportController@admin')->name('import.data');
+		Route::post('import/users', 'ImportController@user')->name('import.users');
 
 		// Account
 		Route::get('account', 'AccountController@index')->name('account');
-		Route::patch('account', 'AccountController@store')->name('account');
+		Route::patch('account', 'AccountController@update')->name('account');
 		Route::get('account/password', 'AccountController@password')->name('account.password');
 		Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
 		Route::get('account/logs', 'AccountController@logs')->name('account.logs');
 	});
 });
 
-Route::get('/', function(){
-	return redirect('home');
-});
-
 // User Routes
+Route::get('/', function(){ return redirect('home'); });
 Route::get('login', 'AuthController@index')->name('login');
 Route::post('login', 'AuthController@login')->name('login');
 Route::post('logout', 'AuthController@logout')->name('logout');

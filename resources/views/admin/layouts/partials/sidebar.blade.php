@@ -33,13 +33,13 @@
                     <li>
                         <a href="{{ route('admin.data.index') }}" class=" waves-effect">
                             <i class="ti-user"></i>
-                            <span>Data Admin</span>
+                            <span>Administrator</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('admin.users.index') }}" class=" waves-effect">
                             <i class="ti-agenda"></i>
-                            <span>Data Warga</span>
+                            <span>Warga</span>
                         </a>
                     </li>
                     <li>

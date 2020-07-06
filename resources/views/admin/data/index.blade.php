@@ -43,7 +43,7 @@
                     <label for="file_import" class="col-sm-2 col-form-label">File</label>
                     <div class="col-sm-10">
                       <input class="form-control" type="file" name="file_import" id="file_import" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                      <p class='help-block'>Silahkan Download File Samplenya Disini.</p>
+                      <p class='help-block'>Silahkan Download File Samplenya <a href="{{ asset('import/admin.xlsx') }}">Disini</a>.</p>
                     </div>
                   </div>
                   <div class="form-group mb-0">

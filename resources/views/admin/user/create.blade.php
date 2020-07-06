@@ -62,8 +62,8 @@
                         <div class="col-sm-10">
                             <select class="form-control" name="gender" id="gender" required>
                                 <option selected disabled>Select *</option>
-                                <option {{ old('gender') == 'Laki - Laki' ? 'selected' : '' }} value="Laki - Laki">Pria</option>
-                                <option {{ old('gender') == 'Perempuan' ? 'selected' : '' }} value="Perempuan">Wanita</option>
+                                <option {{ old('gender') == 'Laki - Laki' ? 'selected' : '' }} value="Laki - Laki">Laki - Laki</option>
+                                <option {{ old('gender') == 'Perempuan' ? 'selected' : '' }} value="Perempuan">Perempuan</option>
                             </select>
                         </div>
                     </div>

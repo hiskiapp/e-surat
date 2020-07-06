@@ -32,7 +32,7 @@
                                     
                                     <div class="form-group">
                                         <label for="sin">NIK</label>
-                                        <input name="sin" type="text" class="form-control @error('sin') is-invalid @enderror" value="{{ old('sin') }}" id="sin" placeholder="NIK KTP" autocomplete="sin" autofocus>
+                                        <input name="sin" type="text" class="form-control @error('sin') is-invalid @enderror" value="{{ old('sin') }}" id="sin" placeholder="Enter NIK KTP" autocomplete="sin" autofocus>
                                         @error('sin')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>

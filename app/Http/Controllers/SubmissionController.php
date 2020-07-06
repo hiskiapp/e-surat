@@ -13,14 +13,21 @@ class SubmissionController extends Controller
     {
         $letter = Letter::find($letter);
 
-    	$submission = New Submission;
-    	$submission->user_id = auth()->id();
-    	$submission->letter_id = $letter->id;
-    	$submission->data = json_encode($request->except('_token'));
-    	$submission->approval_status = 0;
-    	$submission->save();
+        if (!$letter) {
+            return back()->with([
+                'status' => 'danger', 
+                'message' => 'Surat Belum Tersedia!'
+            ]);
+        }
 
-    	Activity::add(['page' => 'Pengajuan Surat', 'description' => 'Mengajukan Surat Baru: ' . $letter->name]);
+        $submission = New Submission;
+        $submission->user_id = auth()->id();
+        $submission->letter_id = $letter->id;
+        $submission->data = json_encode($request->except('_token'));
+        $submission->approval_status = 0;
+        $submission->save();
+
+        Activity::add(['page' => 'Pengajuan Surat', 'description' => 'Mengajukan Surat Baru: ' . $letter->name]);
 
         return back()->with([
             'status' => 'success', 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Request\Admin\AccountRequest;
+use App\Http\Requests\Admin\AccountRequest;
 use App\Admin;
 use App\ActivityLog;
 use App\Rules\MatchOldPassword;
@@ -15,15 +15,21 @@ class AccountController extends Controller
 {
     public function index()
     {
-        $user = auth()->user();
-        return view('account.index', ['user' => $user]);
+        $admin = auth('admin')->user();
+        return view('admin.account.index', ['admin' => $admin]);
     }
 
     public function update(AccountRequest $request)
     {
-        $user = auth()->user();
+        $user = auth('admin')->user();
         $user->update($request->validated());
-        return view('account.index', ['user' => $user]);
+        
+        Activity::add(['page' => 'Data Akun','description' => 'Memperbarui Data Akun']);
+
+        return back()->with([
+            'status' => 'success', 
+            'message' => 'Akun Berhasil Diperbarui!'
+        ]);
     }
 
 	public function password()

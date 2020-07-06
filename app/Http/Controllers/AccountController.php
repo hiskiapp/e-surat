@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request\AccountRequest;
+use App\Http\Requests\AccountRequest;
 use App\User;
 use App\ActivityLog;
 use App\Rules\MatchOldPassword;

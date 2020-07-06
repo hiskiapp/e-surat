@@ -37,13 +37,13 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
               </div>
               <div class="modal-body">
-                <form class="custom-validation" method="POST" action="{{ route('admin.import.data') }}" enctype="multipart/form-data">
+                <form class="custom-validation" method="POST" action="{{ route('admin.import.users') }}" enctype="multipart/form-data">
                   @csrf
                   <div class="form-group row">
                     <label for="file_import" class="col-sm-2 col-form-label">File</label>
                     <div class="col-sm-10">
                       <input class="form-control" type="file" name="file_import" id="file_import" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
-                      <p class='help-block'>Silahkan Download File Samplenya Disini.</p>
+                      <p class='help-block'>Silahkan Download File Samplenya <a href="{{ asset('import/warga.xlsx') }}">Disini</a>.</p>
                     </div>
                   </div>
                   <div class="form-group mb-0">
@@ -81,8 +81,6 @@
               <th>TTL</th>
               <th>Jenis Kelamin</th>
               <th>Alamat</th>
-              <th>Status Perkawinan</th>
-              <th>Pekerjaan</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -99,8 +97,6 @@
               <td>{{ $user->getPsb() }}</td>
               <td>{{ $user->getShortGender() }}</td>
               <td>{{ $user->address ?? '-' }}</td>
-              <td>{{ $user->marital_status }}</td>
-              <td>{{ $user->proffesion ?? '-' }}</td>
               <td>
                 <a class="btn btn-sm btn-warning waves-effect waves-light" href="{{ route('admin.users.edit', $user->id) }}" role="button"><i class="mdi mdi-grease-pencil"></i></a>
                 <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" class="d-inline form-delete">

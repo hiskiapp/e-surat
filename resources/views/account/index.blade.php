@@ -63,7 +63,7 @@
             </tr>
             <tr>
               <td><strong>Pekerjaan</strong></td>
-              <td>{{ $user->proffesion ?? '-' }}</td>
+              <td>{{ $user->profession ?? '-' }}</td>
             </tr>
           </tbody>
         </table>
