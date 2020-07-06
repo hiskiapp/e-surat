@@ -15,7 +15,7 @@
 Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace' => 'Admin'], function()
 {
 	Route::get('/', function(){
-		return redirect('home');
+		return redirect('admin/home');
 	});
 
 	Route::get('login', 'AuthController@index')->name('login');
@@ -38,6 +38,8 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::post('import/data', 'ImportController@admin')->name('import.data');
 
 		// Account
+		Route::get('account', 'AccountController@index')->name('account');
+		Route::patch('account', 'AccountController@store')->name('account');
 		Route::get('account/password', 'AccountController@password')->name('account.password');
 		Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
 		Route::get('account/logs', 'AccountController@logs')->name('account.logs');

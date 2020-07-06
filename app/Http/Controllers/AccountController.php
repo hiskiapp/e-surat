@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Request\AccountRequest;
 use App\User;
 use App\ActivityLog;
 use App\Rules\MatchOldPassword;
@@ -16,6 +17,13 @@ class AccountController extends Controller
 		$user = auth()->user();
 		return view('account.index', ['user' => $user]);
 	}
+
+    public function update(AccountRequest $request)
+    {
+        $user = auth()->user();
+        $user->update($request->validated());
+        return view('account.index', ['user' => $user]);
+    }
 
 	public function password()
 	{

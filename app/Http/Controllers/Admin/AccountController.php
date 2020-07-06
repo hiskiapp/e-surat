@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Request\Admin\AccountRequest;
 use App\Admin;
 use App\ActivityLog;
 use App\Rules\MatchOldPassword;
@@ -12,6 +13,19 @@ use Hash;
 
 class AccountController extends Controller
 {
+    public function index()
+    {
+        $user = auth()->user();
+        return view('account.index', ['user' => $user]);
+    }
+
+    public function update(AccountRequest $request)
+    {
+        $user = auth()->user();
+        $user->update($request->validated());
+        return view('account.index', ['user' => $user]);
+    }
+
 	public function password()
 	{
 		return view('admin.account.password');
