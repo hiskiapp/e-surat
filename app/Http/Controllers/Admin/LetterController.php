@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Letter;
+use App\Submission;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\LetterRequest;
 use Activity;
@@ -56,7 +57,12 @@ class LetterController extends Controller
      */
     public function show(Letter $letter)
     {
-        return view('admin.letter.show', ['letter' => $letter]);
+        $submissions = Submission::with('user','admin')->where([
+            'letter_id' => $letter->id,
+            'approval_status' => 1,
+        ])->get();
+
+        return view('admin.letter.show', ['letter' => $letter, 'submissions' => $submissions]);
     }
 
     /**

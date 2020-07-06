@@ -27,7 +27,7 @@ class ImportController extends Controller
     {
     	Excel::import(new UsersImport, request()->file('file_import'));
 
-    	Activity::add(['page' => 'Admin', 'description' => 'Menngimport Data Warga']);
+    	Activity::add(['page' => 'Warga', 'description' => 'Menngimport Data Warga']);
 
     	return redirect()->route('admin.users.index')->with([
             'status' => 'success', 

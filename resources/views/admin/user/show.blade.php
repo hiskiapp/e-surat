@@ -39,7 +39,7 @@
             </tr>
             <tr>
               <td><strong>NIK</strong></td>
-              <td>{{ $user->name }}</td>
+              <td>{{ $user->sin }}</td>
             </tr>
             <tr>
               <td><strong>Nama</strong></td>
@@ -58,12 +58,16 @@
               <td>{{ $user->address ?? '-' }}</td>
             </tr>
             <tr>
+              <td><strong>Agama</strong></td>
+              <td>{{ $user->religion }}</td>
+            </tr>
+            <tr>
               <td><strong>Status Perkawinan</strong></td>
               <td>{{ $user->marital_status }}</td>
             </tr>
             <tr>
               <td><strong>Pekerjaan</strong></td>
-              <td>{{ $user->proffesion ?? '-' }}</td>
+              <td>{{ $user->profession ?? '-' }}</td>
             </tr>
           </tbody>
         </table>

@@ -74,6 +74,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="religion" class="col-sm-2 col-form-label">Agama</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="religion" id="religion" required>
+                                <option selected disabled>Select *</option>
+                                <option {{ old('religion') == 'Islam' ? 'selected' : '' }} value="Islam">Islam</option>
+                                <option {{ old('religion') == 'Protestan' ? 'selected' : '' }} value="Protestan">Protestan</option>
+                                <option {{ old('religion') == 'Katolik' ? 'selected' : '' }} value="Katolik">Katolik</option>
+                                <option {{ old('religion') == 'Hindu' ? 'selected' : '' }} value="Hindu">Hindu</option>
+                                <option {{ old('religion') == 'Buddha' ? 'selected' : '' }} value="Buddha">Buddha</option>
+                                <option {{ old('religion') == 'Konghucu' ? 'selected' : '' }} value="Konghucu">Konghucu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="marital_status" class="col-sm-2 col-form-label">Status Perkawinan</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="marital_status" id="marital_status" required>

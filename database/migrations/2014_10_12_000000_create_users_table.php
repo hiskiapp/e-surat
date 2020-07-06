@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('birth_date')->nullable();
             $table->enum('gender', ['Laki - Laki', 'Perempuan']);
             $table->text('address')->nullable();
+            $table->enum('religion', ['Islam', 'Protestan', 'Katolik', 'Hindu', 'Buddha', 'Konghucu']);
             $table->enum('marital_status', ['Belum Kawin', 'Kawin']);
             $table->string('profession')->nullable();
             $table->rememberToken();

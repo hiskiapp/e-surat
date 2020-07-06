@@ -63,6 +63,20 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="religion" class="col-sm-2 col-form-label">Agama</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="religion" id="religion" required>
+                                <option selected disabled>Select *</option>
+                                <option {{ $user->religion == 'Islam' ? 'selected' : '' }} value="Islam">Islam</option>
+                                <option {{ $user->religion == 'Protestan' ? 'selected' : '' }} value="Protestan">Protestan</option>
+                                <option {{ $user->religion == 'Katolik' ? 'selected' : '' }} value="Katolik">Katolik</option>
+                                <option {{ $user->religion == 'Hindu' ? 'selected' : '' }} value="Hindu">Hindu</option>
+                                <option {{ $user->religion == 'Buddha' ? 'selected' : '' }} value="Buddha">Buddha</option>
+                                <option {{ $user->religion == 'Konghucu' ? 'selected' : '' }} value="Konghucu">Konghucu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="gender" class="col-sm-2 col-form-label">Jenis Kelamin</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="gender" id="gender" required>

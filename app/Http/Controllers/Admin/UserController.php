@@ -64,6 +64,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->gender = $request->gender;
         $user->address = $request->address;
+        $user->religion = $request->religion;
         $user->marital_status = $request->marital_status;
         $user->profession = $request->profession;
         $user->save();
@@ -131,6 +132,7 @@ class UserController extends Controller
         $user->birth_date = $request->birth_date;
         $user->gender = $request->gender;
         $user->address = $request->address;
+        $user->religion = $request->religion;
         $user->marital_status = $request->marital_status;
         $user->profession = $request->profession;
         $user->save();
