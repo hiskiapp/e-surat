@@ -15,7 +15,7 @@ use Carbon\Carbon;
 
 class UsersImport implements ToModel, WithHeadingRow, WithCalculatedFormulas, SkipsOnError
 {
-	use Importable, SkipsErrors;
+    use Importable, SkipsErrors;
     /**
      * @param array $row
      *
@@ -25,7 +25,7 @@ class UsersImport implements ToModel, WithHeadingRow, WithCalculatedFormulas, Sk
     {
         $birthDate = Carbon::parse(Date::excelToDateTimeObject($row['tanggal_lahir']));
 
-    	return new User([
+        return new User([
             'sin' => $row['nik'],
             'name'     => ucwords($row['nama']),
             'password' => Hash::make($birthDate->format('d-m-Y')),

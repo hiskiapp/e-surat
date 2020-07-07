@@ -1,5 +1,6 @@
-<!doctype html>
+cd<!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <title>@yield('title', $page_title ?? '') | {{ config('app.name') }}</title>
@@ -7,7 +8,7 @@
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico') }}">
     @include('admin.layouts.partials.head')
 </head>
 
@@ -55,6 +56,7 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    @include('admin.layouts.partials.footer-script')    
+    @include('admin.layouts.partials.footer-script')
 </body>
+
 </html>

@@ -49,7 +49,7 @@ class InstallProject extends Command
             $this->info('Installing E-Surat Is Completed ! Thank You :)');
             $this->info('--');
             $this->info("::Administrator Credential::\n URL Login: http://localhost/e-surat/admin/login\nUsername: agus \nPassword: 123456");
-        }else{
+        } else {
             $this->info('Setup Aborted !');
             $this->info('Please setting the database configuration for first !');
         }
@@ -57,7 +57,8 @@ class InstallProject extends Command
         $this->footer();
     }
 
-    private function header(){
+    private function header()
+    {
         $this->info('--------- :===: By @hiskiia :==: ---------------');
         $this->info('====================================================================');
     }

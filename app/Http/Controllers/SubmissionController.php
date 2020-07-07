@@ -15,12 +15,12 @@ class SubmissionController extends Controller
 
         if (!$letter) {
             return back()->with([
-                'status' => 'danger', 
+                'status' => 'danger',
                 'message' => 'Surat Belum Tersedia!'
             ]);
         }
 
-        $submission = New Submission;
+        $submission = new Submission;
         $submission->user_id = auth()->id();
         $submission->letter_id = $letter->id;
         $submission->data = json_encode($request->except('_token'));
@@ -30,7 +30,7 @@ class SubmissionController extends Controller
         Activity::add(['page' => 'Pengajuan Surat', 'description' => 'Mengajukan Surat Baru: ' . $letter->name]);
 
         return back()->with([
-            'status' => 'success', 
+            'status' => 'success',
             'message' => 'Berhasil Mengajukan Surat! Silahkan Tunggu Petugas Untuk Kerumah Anda.'
         ]);
     }

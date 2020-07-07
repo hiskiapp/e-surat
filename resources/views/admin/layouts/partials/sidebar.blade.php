@@ -23,34 +23,36 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('admin.submissions.pending') }}">
-                            <span class="badge badge-pill badge-primary float-right">{{ pendingSubmissions() }}</span> Menunggu Persetujuan </a></li>
-                            <li><a href="{{ route('admin.submissions.approved') }}">Disetujui</a></li>
-                            <li><a href="{{ route('admin.submissions.rejected') }}">Ditolak</a></li>
-                        </ul>
-                    </li>
+                                <span
+                                    class="badge badge-pill badge-primary float-right">{{ pendingSubmissions() }}</span>
+                                Menunggu Persetujuan </a></li>
+                        <li><a href="{{ route('admin.submissions.approved') }}">Disetujui</a></li>
+                        <li><a href="{{ route('admin.submissions.rejected') }}">Ditolak</a></li>
+                    </ul>
+                </li>
 
-                    <li class="menu-title">Master Data</li>
-                    <li>
-                        <a href="{{ route('admin.data.index') }}" class=" waves-effect">
-                            <i class="ti-user"></i>
-                            <span>Administrator</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.users.index') }}" class=" waves-effect">
-                            <i class="ti-agenda"></i>
-                            <span>Warga</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('admin.letters.index') }}" class=" waves-effect">
-                            <i class="ti-receipt"></i>
-                            <span>Daftar Surat</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <!-- Sidebar -->
+                <li class="menu-title">Master Data</li>
+                <li>
+                    <a href="{{ route('admin.data.index') }}" class=" waves-effect">
+                        <i class="ti-user"></i>
+                        <span>Administrator</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.users.index') }}" class=" waves-effect">
+                        <i class="ti-agenda"></i>
+                        <span>Warga</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.letters.index') }}" class=" waves-effect">
+                        <i class="ti-receipt"></i>
+                        <span>Daftar Surat</span>
+                    </a>
+                </li>
+            </ul>
         </div>
+        <!-- Sidebar -->
     </div>
+</div>
 <!-- Left Sidebar End -->

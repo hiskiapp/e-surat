@@ -12,11 +12,11 @@
 <div class="row align-items-center">
     <div class="col-sm-6">
         @component('admin.components.breadcumb')
-        @slot('title') Edit Data Admin: {{ $admin->name }}  @endslot
+        @slot('title') Edit Data Admin: {{ $admin->name }} @endslot
         @slot('li_1') Admin @endslot
         @endcomponent
     </div>
-</div>     
+</div>
 <!-- end page title -->
 
 <div class="row">
@@ -29,7 +29,8 @@
 
                 @include('admin.components.message')
 
-                <form class="custom-validation" method="POST" action="{{ route('admin.data.update', $admin->id) }}" enctype="multipart/form-data">
+                <form class="custom-validation" method="POST" action="{{ route('admin.data.update', $admin->id) }}"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="form-group row">
@@ -37,28 +38,32 @@
                         <label for="photo" class="col-sm-2 col-form-label">Foto</label>
                         <div class="col-sm-10">
                             <a class="image-popup-no-margins" href="{{ asset($admin->photo) }}">
-                                <img class="img-fluid" alt="{{ $admin->name }}" src="{{ asset($admin->photo) }}" width="120">
+                                <img class="img-fluid" alt="{{ $admin->name }}" src="{{ asset($admin->photo) }}"
+                                    width="120">
                             </a>
-                              <input class="form-control mt-2" type="file" name="photo" id="photo">
-                              <p class='help-block'>Please leave empty if not change.</p>
-                          </div>
-                      </div>
-                      <div class="form-group row">
+                            <input class="form-control mt-2" type="file" name="photo" id="photo">
+                            <p class='help-block'>Please leave empty if not change.</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nama *</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="name" id="name" value="{{ old('name') ?? $admin->name }}" data-parsley-length="[5,255]" required>
+                            <input class="form-control" type="text" name="name" id="name"
+                                value="{{ old('name') ?? $admin->name }}" data-parsley-length="[5,255]" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="username" class="col-sm-2 col-form-label">Username *</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="username" id="username" value="{{ old('name') ?? $admin->username }}" data-parsley-length="[5,255]" required>
+                            <input class="form-control" type="text" name="username" id="username"
+                                value="{{ old('name') ?? $admin->username }}" data-parsley-length="[5,255]" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="password" class="col-sm-2 col-form-label">Password *</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="password" name="password" id="password" data-parsley-length="[6,255]">
+                            <input class="form-control" type="password" name="password" id="password"
+                                data-parsley-length="[6,255]">
                             <p class='help-block'>Please leave empty if not change.</p>
                         </div>
                     </div>
@@ -67,7 +72,8 @@
                             <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
                                 Submit
                             </button>
-                            <a class="btn btn-secondary waves-effect waves-light" href="{{ route('admin.data.index') }}" role="button">Cancel</a>
+                            <a class="btn btn-secondary waves-effect waves-light" href="{{ route('admin.data.index') }}"
+                                role="button">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -75,7 +81,7 @@
             </div>
         </div>
     </div> <!-- end col -->
-</div> <!-- end row -->    
+</div> <!-- end row -->
 
 @endsection
 

@@ -23,23 +23,23 @@ class AccountController extends Controller
     {
         $user = auth('admin')->user();
         $user->update($request->validated());
-        
-        Activity::add(['page' => 'Data Akun','description' => 'Memperbarui Data Akun']);
+
+        Activity::add(['page' => 'Data Akun', 'description' => 'Memperbarui Data Akun']);
 
         return back()->with([
-            'status' => 'success', 
+            'status' => 'success',
             'message' => 'Akun Berhasil Diperbarui!'
         ]);
     }
 
-	public function password()
-	{
-		return view('admin.account.password');
-	}
+    public function password()
+    {
+        return view('admin.account.password');
+    }
 
-	public function patchPassword(Request $request)
-	{
-		$request->validate([
+    public function patchPassword(Request $request)
+    {
+        $request->validate([
             'current_password' => ['required', new MatchOldPassword],
             'new_password' => ['required'],
             'new_confirm_password' => ['same:new_password'],
@@ -49,21 +49,21 @@ class AccountController extends Controller
         $data->password = Hash::make($request->new_password);
         $data->save();
 
-        Activity::add(['page' => 'Ganti Password','description' => 'Anda Mengganti Password']);
+        Activity::add(['page' => 'Ganti Password', 'description' => 'Anda Mengganti Password']);
 
         return back()->with([
-            'status' => 'success', 
+            'status' => 'success',
             'message' => 'Password Berhasil Diubah!'
         ]);
-	}
+    }
 
-	public function logs()
-	{
-		$logs = ActivityLog::orderBy('created_at', 'desc')
-        ->where('user_type', 'admin')
-        ->where('user_id', auth('admin')->user()->id)
-        ->get();
+    public function logs()
+    {
+        $logs = ActivityLog::orderBy('created_at', 'desc')
+            ->where('user_type', 'admin')
+            ->where('user_id', auth('admin')->user()->id)
+            ->get();
 
-		return view('admin.account.logs', ['logs' => $logs]);
-	}
+        return view('admin.account.logs', ['logs' => $logs]);
+    }
 }

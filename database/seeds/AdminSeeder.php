@@ -12,7 +12,7 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $init = New Admin;
+        $init = new Admin;
         $init->name = "Agus Wahyu";
         $init->username = "agus";
         $init->password = Hash::make('123456');

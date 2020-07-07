@@ -42,7 +42,7 @@ class AdminController extends Controller
      */
     public function store(AdminStoreRequest $request)
     {
-        $data = New Admin;
+        $data = new Admin;
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
@@ -57,11 +57,11 @@ class AdminController extends Controller
         $data->password = Hash::make($request->password);
         $data->save();
 
-        Activity::add(['page' => 'Admin', 'description' => 'Menambah Data Admin: '. $request->name]);
+        Activity::add(['page' => 'Admin', 'description' => 'Menambah Data Admin: ' . $request->name]);
 
         return redirect()->route('admin.data.index')->with([
-            'status' => 'success', 
-            'message' => 'Menambahkan Admin Baru: '.$request->name
+            'status' => 'success',
+            'message' => 'Menambahkan Admin Baru: ' . $request->name
         ]);
     }
 
@@ -115,14 +115,14 @@ class AdminController extends Controller
         if ($request->password) {
             $data->password = Hash::make($request->password);
         }
-        
+
         $data->save();
-        
-        Activity::add(['page' => 'Admin', 'description' => 'Menmperbarui Data Admin: '. $data->name]);
+
+        Activity::add(['page' => 'Admin', 'description' => 'Menmperbarui Data Admin: ' . $data->name]);
 
         return redirect()->route('admin.data.index')->with([
-            'status' => 'success', 
-            'message' => 'Berhasil Memperbarui Data Admin: '.$request->name
+            'status' => 'success',
+            'message' => 'Berhasil Memperbarui Data Admin: ' . $request->name
         ]);
     }
 
@@ -134,7 +134,7 @@ class AdminController extends Controller
      */
     public function destroy(Admin $data)
     {
-        Activity::add(['page' => 'Admin', 'description' => 'Menghapus Data Admin: '. $data->name]);
+        Activity::add(['page' => 'Admin', 'description' => 'Menghapus Data Admin: ' . $data->name]);
         $data->delete();
 
         return back()->with(['status' => 'success', 'message' => 'Data Berhasil Dihapus!']);

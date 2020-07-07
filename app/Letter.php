@@ -15,7 +15,8 @@ class Letter extends Model
         'name', 'status'
     ];
 
-    public function status(){
-    	return $this->status == 'off' ? 'Nonaktif' : 'Aktif';
+    public function status()
+    {
+        return $this->status == 'off' ? 'Nonaktif' : 'Aktif';
     }
 }

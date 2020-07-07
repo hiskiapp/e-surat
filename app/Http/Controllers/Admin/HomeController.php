@@ -10,13 +10,13 @@ use App\Letter;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-    	$data['submissions'] = Submission::count();
-    	$data['submissionsApproved'] = Submission::where('approval_status', 1)->count();
-    	$data['users'] = User::count();
-    	$data['letters'] = Letter::count();
+	public function index()
+	{
+		$data['submissions'] = Submission::count();
+		$data['submissionsApproved'] = Submission::where('approval_status', 1)->count();
+		$data['users'] = User::count();
+		$data['letters'] = Letter::count();
 
-    	return view('admin.home.index', $data);
-    }
+		return view('admin.home.index', $data);
+	}
 }

@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <title>@yield('title', $page_title ?? '') | {{ config('app.name') }}</title>
@@ -55,6 +56,7 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    @include('layouts.partials.footer-script')    
+    @include('layouts.partials.footer-script')
 </body>
+
 </html>

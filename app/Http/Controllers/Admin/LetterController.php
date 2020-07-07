@@ -41,11 +41,11 @@ class LetterController extends Controller
     {
         Letter::create($request->validated());
 
-        Activity::add(['page' => 'Daftar Surat', 'description' => 'Menambah Surat Baru: '. $request->name]);
+        Activity::add(['page' => 'Daftar Surat', 'description' => 'Menambah Surat Baru: ' . $request->name]);
 
         return redirect()->route('admin.letters.index')->with([
-            'status' => 'success', 
-            'message' => 'Menambahkan Surat Baru: '.$request->name
+            'status' => 'success',
+            'message' => 'Menambahkan Surat Baru: ' . $request->name
         ]);
     }
 
@@ -57,7 +57,7 @@ class LetterController extends Controller
      */
     public function show(Letter $letter)
     {
-        $submissions = Submission::with('user','admin')->where([
+        $submissions = Submission::with('user', 'admin')->where([
             'letter_id' => $letter->id,
             'approval_status' => 1,
         ])->get();
@@ -87,11 +87,11 @@ class LetterController extends Controller
     {
         $letter->update($request->validated());
 
-        Activity::add(['page' => 'Edit Surat', 'description' => 'Memperbarui Surat: '. $letter->name]);
+        Activity::add(['page' => 'Edit Surat', 'description' => 'Memperbarui Surat: ' . $letter->name]);
 
         return redirect()->route('admin.letters.index')->with([
-            'status' => 'success', 
-            'message' => 'Berhasil Memperbarui Surat: '.$letter->name
+            'status' => 'success',
+            'message' => 'Berhasil Memperbarui Surat: ' . $letter->name
         ]);
     }
 
@@ -103,7 +103,7 @@ class LetterController extends Controller
      */
     public function destroy(Letter $letter)
     {
-        Activity::add(['page' => 'Daftar Surat', 'description' => 'Menghapus Surat: '. $letter->name]);
+        Activity::add(['page' => 'Daftar Surat', 'description' => 'Menghapus Surat: ' . $letter->name]);
 
         $letter->delete();
 

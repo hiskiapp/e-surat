@@ -22,7 +22,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="javascript:void(0);" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="waves-effect">
+                    <a href="javascript:void(0);"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="waves-effect">
                         <i class="mdi mdi-logout"></i>
                         <span>{{ __('Logout') }}</span>
                     </a>

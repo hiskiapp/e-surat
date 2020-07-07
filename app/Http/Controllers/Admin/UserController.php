@@ -43,7 +43,7 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $user = New User;
+        $user = new User;
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
@@ -58,7 +58,7 @@ class UserController extends Controller
         $user->name = $request->name;
 
         $password = $request->password ?? Carbon::parse($request->birth_date)->format('d-m-Y');
-        $user->password = Hash::make($password); 
+        $user->password = Hash::make($password);
 
         $user->birth_place = $request->birth_place;
         $user->birth_date = $request->birth_date;
@@ -69,11 +69,11 @@ class UserController extends Controller
         $user->profession = $request->profession;
         $user->save();
 
-        Activity::add(['page' => 'Warga', 'description' => 'Menambah Data Warga: '. $request->name]);
+        Activity::add(['page' => 'Warga', 'description' => 'Menambah Data Warga: ' . $request->name]);
 
         return redirect()->route('admin.users.index')->with([
-            'status' => 'success', 
-            'message' => 'Menambahkan Warga Baru: '.$request->name
+            'status' => 'success',
+            'message' => 'Menambahkan Warga Baru: ' . $request->name
         ]);
     }
 
@@ -136,12 +136,12 @@ class UserController extends Controller
         $user->marital_status = $request->marital_status;
         $user->profession = $request->profession;
         $user->save();
-        
-        Activity::add(['page' => 'User', 'description' => 'Menmperbarui Data Warga: '. $user->name]);
+
+        Activity::add(['page' => 'User', 'description' => 'Menmperbarui Data Warga: ' . $user->name]);
 
         return redirect()->route('admin.users.index')->with([
-            'status' => 'success', 
-            'message' => 'Berhasil Memperbarui Data Warga: '.$request->name
+            'status' => 'success',
+            'message' => 'Berhasil Memperbarui Data Warga: ' . $request->name
         ]);
     }
 
@@ -153,7 +153,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        Activity::add(['page' => 'User', 'description' => 'Menghapus Data Warga: '. $user->name]);
+        Activity::add(['page' => 'User', 'description' => 'Menghapus Data Warga: ' . $user->name]);
         $user->delete();
 
         return back()->with(['status' => 'success', 'message' => 'Data Berhasil Dihapus!']);

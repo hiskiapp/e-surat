@@ -21,9 +21,9 @@ class AdminsImport implements ToModel, WithHeadingRow, SkipsOnError
     public function model(array $row)
     {
         return new Admin([
-           'name'     => ucwords($row['nama']),
-           'username' => strtolower($row['username']),
-           'password' => Hash::make($row['password']),
+            'name'     => ucwords($row['nama']),
+            'username' => strtolower($row['username']),
+            'password' => Hash::make($row['password']),
         ]);
     }
 }

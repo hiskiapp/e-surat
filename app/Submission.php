@@ -14,37 +14,42 @@ class Submission extends Model
         'approval_at' => 'date',
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 
-    public function letter(){
+    public function letter()
+    {
         return $this->belongsTo('App\Letter');
     }
 
-    public function admin(){
+    public function admin()
+    {
         return $this->belongsTo('App\Admin');
     }
 
-    public function getStatus(){
-    	switch ($this->approval_status) {
-    		case 0:
-    			return 'Menunggu Persetujuan';
-    			break;
-    		case 1:
-    			return 'Disetujui';
-    			break;
-    		case 2:
-    			return 'Ditolak';
-    			break;
-    		
-    		default:
-    			return 'Tidak Diketahui';
-    			break;
-    	}
+    public function getStatus()
+    {
+        switch ($this->approval_status) {
+            case 0:
+                return 'Menunggu Persetujuan';
+                break;
+            case 1:
+                return 'Disetujui';
+                break;
+            case 2:
+                return 'Ditolak';
+                break;
+
+            default:
+                return 'Tidak Diketahui';
+                break;
+        }
     }
 
-    public function getData(){
-    	return json_decode($this->data);
+    public function getData()
+    {
+        return json_decode($this->data);
     }
 }

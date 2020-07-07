@@ -32,7 +32,7 @@ class AuthController extends Controller
         }
 
         if (Auth::attempt($request->only($this->username(), 'password'), $request->filled('remember'))) {
-            Activity::add(['page' => 'Login','description' => 'Masuk Ke Website']);
+            Activity::add(['page' => 'Login', 'description' => 'Masuk Ke Website']);
 
             return redirect()->route('home')->with('status', 'You are Logged!');
         }

@@ -15,7 +15,7 @@ class CreateActivityLogsTable extends Migration
     {
         Schema::create('activity_logs', function (Blueprint $table) {
             $table->id();
-            $table->enum('user_type', ['admin','user']);
+            $table->enum('user_type', ['admin', 'user']);
             $table->foreignId('user_id');
             $table->string('page');
             $table->text('description');

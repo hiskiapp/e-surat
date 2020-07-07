@@ -15,11 +15,11 @@ class Activity
 		if (auth('admin')->check()) {
 			$log->user_type	= 'admin';
 			$log->user_id 	= auth('admin')->user()->id;
-		}else{
+		} else {
 			$log->user_type	= 'user';
 			$log->user_id 	= auth()->user()->id;
 		}
-		
+
 		$log->page 			= $data['page'];
 		$log->description 	= $data['description'];
 		$log->method 		= Request::method();

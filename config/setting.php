@@ -79,9 +79,7 @@ return [
     |   "app.locale" => "settings.locale",
     |
     */
-    'override' => [
-
-    ],
+    'override' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -95,7 +93,5 @@ return [
     |   "tenant_id",
     |
     */
-    'required_extra_columns' => [
-
-    ],
+    'required_extra_columns' => [],
 ];

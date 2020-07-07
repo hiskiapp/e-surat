@@ -12,15 +12,15 @@
 */
 
 // Admin Routes
-Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace' => 'Admin'], function()
-{
-	Route::get('/', function(){ return redirect('admin/home'); });
+Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+	Route::get('/', function () {
+		return redirect('admin/home');
+	});
 	Route::get('login', 'AuthController@index')->name('login');
 	Route::post('login', 'AuthController@login')->name('login');
 	Route::post('logout', 'AuthController@logout')->name('logout');
-	
-	Route::group(['middleware' => 'auth:admin'], function()
-	{
+
+	Route::group(['middleware' => 'auth:admin'], function () {
 		Route::get('home', 'HomeController@index')->name('home');
 		Route::resource('data', 'AdminController');
 		Route::resource('users', 'UserController');
@@ -47,13 +47,14 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 });
 
 // User Routes
-Route::get('/', function(){ return redirect('home'); });
+Route::get('/', function () {
+	return redirect('home');
+});
 Route::get('login', 'AuthController@index')->name('login');
 Route::post('login', 'AuthController@login')->name('login');
 Route::post('logout', 'AuthController@logout')->name('logout');
 
-Route::group(['middleware' => 'auth'], function()
-{
+Route::group(['middleware' => 'auth'], function () {
 	Route::get('home', 'HomeController@index')->name('home');
 	Route::post('store/{letter}', 'SubmissionController@store')->name('store');
 

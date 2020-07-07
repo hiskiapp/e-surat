@@ -12,7 +12,7 @@
     @slot('li_1') Warga @endslot
     @endcomponent
   </div>
-</div>     
+</div>
 <!-- end page title -->
 
 <div class="row">

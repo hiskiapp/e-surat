@@ -21,9 +21,9 @@ class User extends Authenticatable
         'birth_date' => 'date',
     ];
 
-    public function getShortGender() 
+    public function getShortGender()
     {
-      return substr($this->gender, 0, 1);
+        return substr($this->gender, 0, 1);
     }
 
     public function getPsb()

@@ -32,7 +32,7 @@ class AuthController extends Controller
         }
 
         if (Auth::guard('admin')->attempt($request->only($this->username(), 'password'), $request->filled('remember'))) {
-            Activity::add(['page' => 'Login','description' => 'Masuk Ke Website']);
+            Activity::add(['page' => 'Login', 'description' => 'Masuk Ke Website']);
             return redirect()->route('admin.home')->with('status', 'You are Logged in as Admin!');
         }
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
 
         $request->validate($rules, $messages);
     }
-    
+
     private function loginFailed()
     {
         return redirect()->back()->withInput()->withErrors([
