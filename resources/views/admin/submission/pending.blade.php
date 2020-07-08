@@ -18,20 +18,6 @@
         @slot('li_1') Admin @endslot
         @endcomponent
     </div>
-
-    <div class="col-sm-6">
-        <div class="float-right d-none d-md-block">
-            <div class="dropdown">
-                <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="mdi mdi-gesture-spread mr-2"></i> Action
-                </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="{{ route('admin.data.create') }}">Tambah Data</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <!-- end page title -->
 
@@ -59,8 +45,12 @@
                             <td>{{ $submission->user->name }}</td>
                             <td>{{ $submission->letter->name }}</td>
                             <td>
-                                <a class="btn btn-sm btn-warning waves-effect waves-light" href="javascript: void(0);"
-                                    role="button"><i class="mdi mdi-printer-check"></i> Cetak</a>
+                                <form method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}"
+                                    class="d-inline" target="_blank">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-warning waves-effect waves-light"><i
+                                            class="mdi mdi-printer-check"></i> Cetak</button>
+                                </form>
                                 <form method="POST"
                                     action="{{ route('admin.submissions.status', [$submission->id,1]) }}"
                                     class="d-inline form-patch">

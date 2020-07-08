@@ -9,7 +9,7 @@
 
     @section('content')
     <div class="home-btn d-none d-sm-block">
-        <a href="index" class="text-dark"><i class="fas fa-home h2"></i></a>
+        <a href="{{ route('home') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
     </div>
     <div class="account-pages my-5 pt-5">
         <div class="container">

@@ -70,9 +70,12 @@
         </table>
         <div class="form-group mb-0">
           <div>
-            <button class="btn btn-warning waves-effect waves-light mr-1">
-              <i class="mdi mdi-printer-check"></i> Cetak
-            </button>
+            <form method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}" class="d-inline"
+              target="_blank">
+              @csrf
+              <button type="submit" class="btn btn-sm btn-warning waves-effect waves-light"><i
+                  class="mdi mdi-printer-check"></i> Cetak</button>
+            </form>
           </div>
         </div>
       </div>

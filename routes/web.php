@@ -31,7 +31,7 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::get('submissions/rejected', 'SubmissionController@rejected')->name('submissions.rejected');
 		Route::get('submissions/show/{id}', 'SubmissionController@show')->name('submissions.show');
 		Route::patch('submissions/status/{id}/{status}', 'SubmissionController@status')->name('submissions.status');
-		Route::get('submissions/print/{id}', 'SubmissionController@print')->name('submissions.print');
+		Route::post('submissions/print/{id}', 'SubmissionController@print')->name('submissions.print');
 
 		// Import
 		Route::post('import/data', 'ImportController@admin')->name('import.data');
@@ -43,6 +43,10 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::get('account/password', 'AccountController@password')->name('account.password');
 		Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
 		Route::get('account/logs', 'AccountController@logs')->name('account.logs');
+
+		// Setting
+		Route::get('settings', 'SettingController@index')->name('settings');
+		Route::patch('settings', 'SettingController@update')->name('settings');
 	});
 });
 

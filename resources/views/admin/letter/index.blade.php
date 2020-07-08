@@ -20,7 +20,7 @@
     </div>
 
     <div class="col-sm-6">
-        <div class="float-right d-none d-md-block">
+        <div class="float-right d-md-block mb-3">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

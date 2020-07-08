@@ -2,7 +2,7 @@
     <div class="navbar-header">
         <div class="d-flex">
             <div class="navbar-brand-box">
-                <a href="index" class="logo logo-dark">
+                <a href="{{ route('admin.home') }}" class="logo logo-dark">
                     <span class="logo-sm">
                         <img src="{{ asset('assets/images/logo.svg') }}" alt="" height="22">
                     </span>
@@ -11,7 +11,7 @@
                     </span>
                 </a>
 
-                <a href="index" class="logo logo-light">
+                <a href="{{ route('admin.home') }}" class="logo logo-light">
                     <span class="logo-sm">
                         <img src="{{ asset('assets/images/logo-sm.png') }}" alt="" height="22">
                     </span>
@@ -47,7 +47,7 @@
                     <a class="dropdown-item" href="{{ route('admin.account.logs') }}"><i
                             class="mdi mdi-format-list-bulleted-square font-size-17 align-middle mr-1"></i> Log
                         Activity</a>
-                    <a class="dropdown-item d-block" href="#"><i
+                    <a class="dropdown-item d-block" href="{{ route('admin.settings') }}"><i
                             class="mdi mdi-settings font-size-17 align-middle mr-1"></i> Settings</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="javascript:void();"
