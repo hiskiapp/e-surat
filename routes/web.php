@@ -31,6 +31,7 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::get('submissions/rejected', 'SubmissionController@rejected')->name('submissions.rejected');
 		Route::get('submissions/show/{id}', 'SubmissionController@show')->name('submissions.show');
 		Route::patch('submissions/status/{id}/{status}', 'SubmissionController@status')->name('submissions.status');
+		Route::patch('submissions/update/{id}', 'SubmissionController@update')->name('submissions.update');
 		Route::post('submissions/print/{id}', 'SubmissionController@print')->name('submissions.print');
 
 		// Import

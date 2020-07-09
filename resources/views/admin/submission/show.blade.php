@@ -60,24 +60,47 @@
             <tr class='active'>
               <td colspan="2"><strong><i class='fa fa-bars'></i> Detail Surat Lanjutan</strong></td>
             </tr>
-            @foreach($submission->getData() as $key => $value)
-            <tr>
-              <td><strong>{{ ucwords($key) }}</strong></td>
-              <td>{{ $value }}</td>
-            </tr>
-            @endforeach
           </tbody>
         </table>
-        <div class="form-group mb-0">
-          <div>
-            <form method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}" class="d-inline"
-              target="_blank">
-              @csrf
-              <button type="submit" class="btn btn-sm btn-warning waves-effect waves-light"><i
-                  class="mdi mdi-printer-check"></i> Cetak</button>
-            </form>
+        <form class="custom-validation" method="POST" action="{{ route('admin.submissions.update', $submission->id) }}" enctype="multipart/form-data">
+          @csrf
+          @method('PATCH')
+          @foreach($submission->letter->getData() as $key => $data)
+          <div class="form-group row">
+            <label for="{{ $data->input_name }}" class="col-sm-2 col-form-label">{{ $data->input_label }}</label>
+            <div class="col-sm-10">
+              @switch($data->input_type)
+              @case('number')
+              <input class="form-control" type="number" name="{{ $data->input_name }}" id="{{ $data->input_name }}"
+                value="{{ $submission->data[$data->input_name] }}" required>
+              @break
+              @case(2)
+              <textarea name="{{ $data->input_name }}" class="form-control" rows="3">{{ old($data->input_name) }}</textarea>
+              @break
+              @default
+              <input class="form-control" type="text" name="{{ $data->input_name }}" id="{{ $data->input_name }}"
+                value="{{ $submission->getData($key) }}" required>
+              @endswitch
+        
+            </div>
           </div>
-        </div>
+          @endforeach
+          <div class="form-group mb-0">
+            <div>
+              <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                <i class="mdi mdi-pencil"></i>
+                Edit
+              </button>
+              <button type="submit" form="form-print" class="btn btn-warning waves-effect waves-light"><i
+                  class="mdi mdi-printer-check"></i>
+                Cetak</button>
+            </div>
+          </div>
+        </form>
+        <form id="form-print" method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}" class="d-inline form-print"
+          target="_blank">
+          @csrf
+        </form>
       </div>
     </div>
   </div> <!-- end col -->

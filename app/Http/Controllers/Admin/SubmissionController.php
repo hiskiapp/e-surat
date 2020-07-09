@@ -57,14 +57,45 @@ class SubmissionController extends Controller
             'status' => 'success',
             'message' => 'Mengubah Status Pengajuan Surat: #' . $id
         ]);
+    }
 
-        return view('admin.submission.show', ['submission' => $submission]);
+    public function update(Request $request, $id)
+    {
+        $submission = Submission::find($id);
+        $submission->data = json_encode($request->except('_token','_method'));
+        $submission->save();
+
+        Activity::add(['page' => 'Warga', 'description' => 'Berhasil Memperbarui Pengajuan Surat: #' . $id]);
+
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Memperbarui Pengajuan Surat: #' . $id
+        ]);
     }
 
     public function print($id)
     {
         $submission = Submission::find($id);
+        
+        $data['signatory_person'] = setting('vh_status') == 'On' ? setting('village_head') : setting('secretary');
+        $data['signatory_person_position'] = setting('vh_status') == 'On' ? 'Kepala Desa' : 'Sekretaris';
 
-        return view('admin.print.' . $submission->letter_id, ['submission' => $submission]);
+        foreach($submission->user->toArray() as $key => $value){
+            $data[$key] = $value;
+        }
+
+        $data['nik'] = $submission->user->sin;
+        $data['ttl'] = $submission->user->getPsb();
+
+        foreach (json_decode($submission->data) as $key => $value) {
+            $data[$key] = $value;
+        }
+
+        $content = $submission->letter->content;
+        foreach($data as $key => $value){
+            $content = str_replace('[' . $key . ']', $value, $content);
+        }
+
+        return view('admin.print.template', ['submission' => $submission, 'content' => $content]);
     }
 }

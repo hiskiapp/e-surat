@@ -30,17 +30,63 @@
                     @csrf
                     @method('PATCH')
                     <div class="form-group row">
+                        <label for="number" class="col-sm-2 col-form-label">Nomor Surat *</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="number" id="number" value="{{ old('number') ?? $letter->number }}"
+                            data-parsley-length="[5,255]" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nama Surat *</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" id="name"
-                                value="{{ old('name') ?? $letter->name }}" data-parsley-length="[5,255]" required>
+                            value="{{ old('name') ?? $letter->name }}" data-parsley-length="[5,255]" required>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="content" class="col-sm-2 col-form-label">Template *</label>
+                        <div class="col-sm-10">
+                            <textarea id="elm1" name="content" required>{{ old('content') ?? $letter->content }}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                    <label for="data" class="col-sm-2 col-form-label">Data *</label>
+                    <div class="col-sm-10 repeater">
+                        <div data-repeater-list="data">
+                            @foreach(json_decode($letter->data) as $data)
+                            <div data-repeater-item class="row">
+                                <div  class="form-group col-lg-3">
+                                    <label for="label">Input Label</label>
+                                    <input type="text" id="label" name="input_label" value="{{ $data->input_label }}" class="form-control" data-parsley-length="[5,255]" required/>
+                                </div>
+                                <div  class="form-group col-lg-3">
+                                    <label for="input_name">Input Name</label>
+                                    <input type="text" id="input_name" name="input_name" value="{{ $data->input_name }}" class="form-control" data-parsley-length="[5,255]" required/>
+                                </div>
+                                <div  class="form-group col-lg-3">
+                                    <label for="input_type">Input Type</label>
+                                    <select id="input_type" class="form-control" name="input_type" required>
+                                        <option selected disabled>* Pilih</option>
+                                        <option value="text"{{ $data->input_type == 'text' ? 'selected' : ''}}>String</option>
+                                        <option value="number"{{ $data->input_type == 'number' ? 'selected' : ''}}>Number</option>
+                                        <option value="textarea"{{ $data->input_type == 'textarea' ? 'selected' : ''}}>Text Area</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-2 align-self-center">
+                                    <input data-repeater-delete type="button" class="btn btn-primary btn-block" value="Delete"/>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        <input data-repeater-create type="button" class="btn btn-success mo-mt-2" value="Add"/>
+                    </div>
+                </div>
                     <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Status *</label>
                         <div class="col-sm-10">
                             <input type="checkbox" name="status" id="switch3" switch="bool"
-                                {{ $letter->status == 'On' ? 'checked' : '' }} />
+                            {{ $letter->status == 'On' ? 'checked' : '' }} />
                             <label for="switch3" data-on-label="On" data-off-label="Off"></label>
                         </div>
                     </div>
@@ -50,7 +96,7 @@
                                 Submit
                             </button>
                             <a class="btn btn-secondary waves-effect waves-light"
-                                href="{{ route('admin.letters.index') }}" role="button">Cancel</a>
+                            href="{{ route('admin.letters.index') }}" role="button">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -65,6 +111,10 @@
 @section('script')
 <!-- Plugins js -->
 <script src="{{ URL::asset('assets/libs/parsleyjs/parsleyjs.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/tinymce/tinymce.min.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/jquery-repeater/jquery-repeater.min.js')}}"></script>
 
+<script src="{{ URL::asset('assets/js/pages/form-repeater.int.js')}}"></script>
+<script src="{{ URL::asset('assets/js/pages/form-editor.init.js')}}"></script>
 <script src="{{ URL::asset('assets/js/pages/form-validation.init.js')}}"></script>
 @endsection

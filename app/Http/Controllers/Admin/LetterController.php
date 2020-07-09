@@ -39,7 +39,13 @@ class LetterController extends Controller
      */
     public function store(LetterRequest $request)
     {
-        Letter::create($request->validated());
+        $letter = new Letter;
+        $letter->number = $request->number;
+        $letter->name = $request->name;
+        $letter->content = $request->content;
+        $letter->data = json_encode($request->data);
+        $letter->status = $request->status;
+        $letter->save();
 
         Activity::add(['page' => 'Daftar Surat', 'description' => 'Menambah Surat Baru: ' . $request->name]);
 
@@ -85,7 +91,12 @@ class LetterController extends Controller
      */
     public function update(LetterRequest $request, Letter $letter)
     {
-        $letter->update($request->validated());
+        $letter->number = $request->number;
+        $letter->name = $request->name;
+        $letter->content = $request->content;
+        $letter->data = json_encode($request->data);
+        $letter->status = $request->status;
+        $letter->save();
 
         Activity::add(['page' => 'Edit Surat', 'description' => 'Memperbarui Surat: ' . $letter->name]);
 

@@ -90,6 +90,12 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="header_down" class="col-sm-2 col-form-label">KOP Bawah *</label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" name="header_down">{{ setting('header_down') }}</textarea>
+                        </div>
+                    </div>
                     <div class="form-group mb-0">
                         <div>
                             <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">

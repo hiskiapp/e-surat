@@ -47,6 +47,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Nomor Surat</th>
                             <th>Nama</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -56,6 +57,7 @@
                         @foreach($letters as $letter)
                         <tr>
                             <td>{{ $letter->id }}</td>
+                            <td>{{ $letter->number }}</td>
                             <td>{{ $letter->name }}</td>
                             <td>{{ $letter->status() }}</td>
                             <td>

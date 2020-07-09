@@ -15,9 +15,13 @@ class CreateLettersTable extends Migration
     {
         Schema::create('letters', function (Blueprint $table) {
             $table->id();
+            $table->string('number');
             $table->string('name');
+            $table->longText('content');
+            $table->json('data');
             $table->enum('status', ['On', 'Off']);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

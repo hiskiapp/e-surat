@@ -30,8 +30,16 @@
                             <td colspan="2"><strong><i class='fa fa-bars'></i> Detail Surat</strong></td>
                         </tr>
                         <tr>
-                            <td><strong>Name</strong></td>
+                            <td><strong>Nomor Surat</strong></td>
+                            <td>{{ $letter->number }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Nama</strong></td>
                             <td>{{ $letter->name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Status</strong></td>
+                            <td>{{ $letter->status() }}</td>
                         </tr>
                     </tbody>
                 </table>

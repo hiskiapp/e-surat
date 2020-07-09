@@ -27,6 +27,7 @@ class LetterRequest extends FormRequest
     public function rules()
     {
         return [
+            'number' => 'required|min:5|max:255',
             'name' => 'required|min:5|max:255',
             'status' => 'in:on,off',
         ];

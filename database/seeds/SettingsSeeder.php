@@ -18,6 +18,7 @@ class SettingsSeeder extends Seeder
     	Setting::create(['key' => 'village', 'value' => 'BRESELA']);
     	Setting::create(['key' => 'village_head', 'value' => 'I Wayan']);
     	Setting::create(['key' => 'secretary','value' => 'II Wayan']);
-    	Setting::create(['key' => 'vh_status', 'value' => 'on']);
+        Setting::create(['key' => 'vh_status', 'value' => 'On']);
+        Setting::create(['key' => 'header_down', 'value' => 'Alamat : Jln Raya Bresela, Kode Pos : 80572 , Telp : (0361) 9081598']);
     }
 }
