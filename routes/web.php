@@ -48,6 +48,9 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		// Setting
 		Route::get('settings', 'SettingController@index')->name('settings');
 		Route::patch('settings', 'SettingController@update')->name('settings');
+
+		// Helper
+		Route::view('helpers', 'admin.helper.index')->name('helpers');
 	});
 });
 

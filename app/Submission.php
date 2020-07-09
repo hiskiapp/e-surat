@@ -48,15 +48,15 @@ class Submission extends Model
         }
     }
 
-    public function getData($index)
+    public function getData($name)
     {
         $json = json_decode($this->data);
 
         $data = [];
         foreach($json as $key => $val){
-            $data[] = $val;
+            $data[$key] = $val;
         }
 
-        return $data[$index];
+        return $data[$name];
     }
 }

@@ -47,7 +47,7 @@
                                                 @case('number')
                                                     <input class="form-control" type="number" name="{{ $data->input_name }}" id="{{ $data->input_name }}" value="{{ old($data->input_name) }}" required>
                                                     @break
-                                                @case(2)
+                                                @case('textarea')
                                                     <textarea name="{{ $data->input_name }}" class="form-control" rows="3">{{ old($data->input_name) }}</textarea>
                                                     @break
                                                 @default

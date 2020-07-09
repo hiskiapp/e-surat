@@ -50,6 +50,12 @@
                         <span>Daftar Surat</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.helpers') }}" class=" waves-effect">
+                        <i class="ti-hand-point-right"></i>
+                        <span>Helpers</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

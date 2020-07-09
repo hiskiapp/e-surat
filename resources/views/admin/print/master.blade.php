@@ -45,7 +45,7 @@
 				<h3 class="mt-5 text-center">PEMERINTAH KABUPATEN {{ strtoupper(setting('districts')) }}</h3>
 				<h3 class="mt-3 text-center">KECAMATAN {{ strtoupper(setting('sub-districts')) }}</h3>
 				<h3 class="mt-3 text-center">DESA {{ strtoupper(setting('village')) }}</h3>
-			<p class="mt-3 text-center">{{ setting('header_down') }}</p>
+				<p class="mt-3 text-center">{{ setting('header_down') }}</p>
 			</div>
 		</div>
 		<hr>
@@ -57,7 +57,11 @@
 					<p class="text-center h5">{{ $submission->letter->name }}</p>
 				</div>
 			</div>
-			@yield('content')
+			<div class="row">
+				<div class="col-12">
+					@yield('content')
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-6 ml-auto">
 					<p class="text-center h5">Mengetahui</p>
