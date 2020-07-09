@@ -38,7 +38,7 @@
             </tr>
             <tr>
               <td><strong>Waktu Pengajuan</strong></td>
-              <td>{{ $submission->created_at->format('d F Y H:i') }}</td>
+              <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
             </tr>
             <tr>
               <td><strong>Status</strong></td>

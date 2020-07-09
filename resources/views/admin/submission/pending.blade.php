@@ -41,7 +41,7 @@
                     <tbody>
                         @foreach($submissions as $submission)
                         <tr>
-                            <td>{{ $submission->created_at->format('d F Y H:i') }}</td>
+                            <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
                             <td>{{ $submission->user->name }}</td>
                             <td>{{ $submission->letter->name }}</td>
                             <td>

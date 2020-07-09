@@ -67,9 +67,9 @@
                     <tbody>
                         @foreach($submissions as $submission)
                         <tr>
-                            <td>{{ $submission->created_at->format('d F Y H:i') }}</td>
+                            <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
                             <td>{{ $submission->user->name }}</td>
-                            <td>{{ $submission->approval_at->format('d F Y H:i') }}</td>
+                            <td>{{ $submission->approval_at->formatLocalized('%d %B %Y %H:%M') }}</td>
                             <td>{{ $submission->admin->name }}</td>
                             <td>
                                 <a class="btn btn-sm btn-warning waves-effect waves-light" href="javascript: void(0);"

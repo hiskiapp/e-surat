@@ -28,6 +28,6 @@ class User extends Authenticatable
 
     public function getPsb()
     {
-        return $this->birth_place . ', ' . $this->birth_date->format('d F Y');
+        return $this->birth_place . ', ' . $this->birth_date->formatLocalized('%d %B %Y');
     }
 }

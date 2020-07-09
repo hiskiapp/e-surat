@@ -40,7 +40,7 @@
                     <tbody>
                         @foreach($logs as $log)
                         <tr>
-                            <td>{{ $log->created_at->format('d F Y H:i') }}</td>
+                            <td>{{ $log->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
                             <td>{{ $log->page }}</td>
                             <td>{{ $log->description }}</td>
                             <td>{{ $log->ip }}</td>
