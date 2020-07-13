@@ -19,7 +19,6 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-
                 <h4 class="card-title">Helpers</h4>
                 <table class='table table-bordered'>
                   <tbody>
@@ -28,11 +27,11 @@
                     </tr>
                     <tr>
                         <td width="25%"><strong>Nama Penandatangan</strong></td>
-                      <td>[signatory_person]</td>
+                      <td>[signatory_name]</td>
                   </tr>
                   <tr>
                       <td><strong>Jabatan Penandatangan</strong></td>
-                      <td>[signatory_person_position]</td>
+                      <td>[signatory_position]</td>
                   </tr>
                   <tr>
                       <td><strong>Nama</strong></td>
@@ -44,7 +43,7 @@
                   </tr>
                   <tr>
                       <td><strong>Nomor KTP</strong></td>
-                      <td>[nik]</td>
+                      <td>[sin]</td>
                   </tr>
                   <tr>
                       <td><strong>Status Perkawinan</strong></td>
@@ -65,6 +64,22 @@
                   <tr>
                       <td><strong>Alamat</strong></td>
                       <td>[address]</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Desa, Tanggal</strong></td>
+                      <td>[tgl]</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Nama Desa</strong></td>
+                      <td>[village]</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Nama Kecamatan</strong></td>
+                      <td>[sub-districts]</td>
+                  </tr>
+                  <tr>
+                      <td><strong>Nama Kabupaten</strong></td>
+                      <td>[districts]</td>
                   </tr>
               </tbody>
           </table>

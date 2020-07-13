@@ -65,6 +65,13 @@
         <form class="custom-validation" method="POST" action="{{ route('admin.submissions.update', $submission->id) }}" enctype="multipart/form-data">
           @csrf
           @method('PATCH')
+          <div class="form-group row">
+            <label for="number" class="col-sm-2 col-form-label">Nomor Surat</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" name="number" id="number"
+              value="{{ $submission->number ?? '-' }}" required>
+            </div>
+          </div>
           @foreach($submission->letter->getData() as $key => $data)
           <div class="form-group row">
             <label for="{{ $data->input_name }}" class="col-sm-2 col-form-label">{{ $data->input_label }}</label>
@@ -72,14 +79,17 @@
               @switch($data->input_type)
               @case('number')
               <input class="form-control" type="number" name="{{ $data->input_name }}" id="{{ $data->input_name }}"
-                value="{{ $submission->getData($data->input_name) }}" required>
+              value="{{ $submission->getData($data->input_name) }}" required>
               @break
               @case('textarea')
-              <textarea name="{{ $data->input_name }}" class="form-control" rows="3">{{ $submission->getData($data->input_name) }}</textarea>
+              <textarea name="{{ $data->input_name }}" class="form-control" rows="3" required>{{ $submission->getData($data->input_name) }}</textarea>
+              @break
+              @case('editor')
+              <textarea id="elm1" name="{{ $data->input_name }}" required>{{ $submission->getData($data->input_name) }}</textarea>
               @break
               @default
               <input class="form-control" type="text" name="{{ $data->input_name }}" id="{{ $data->input_name }}"
-                value="{{ $submission->getData($data->input_name) }}" required>
+              value="{{ $submission->getData($data->input_name) }}" required>
               @endswitch
             </div>
           </div>
@@ -90,30 +100,43 @@
                 <i class="mdi mdi-pencil"></i>
                 Edit
               </button>
-              <button type="submit" form="form-print" class="btn btn-warning waves-effect waves-light"><i
-                  class="mdi mdi-printer-check"></i>
-                Cetak</button>
+              <button type="submit" form="form-print" class="btn btn-warning waves-effect waves-light mr-1"><i
+                class="mdi mdi-printer-check"></i>
+              Cetak</button>
+              @foreach($signatories as $signatory)
+              <button type="submit" form="form-print-{{ $signatory->id }}" class="btn btn-danger waves-effect waves-light mr-1"><i
+                class="mdi mdi-printer-check"></i>
+                Cetak Sebagai {{ $signatory->position }}</button>
+                @endforeach
+              </div>
             </div>
-          </div>
-        </form>
-        <form id="form-print" method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}" class="d-inline form-print"
-          target="_blank">
-          @csrf
-        </form>
+          </form>
+          <form id="form-print" method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}" class="d-inline form-print"
+            target="_blank">
+            @csrf
+          </form>
+          @foreach($signatories as $signatory)
+          <form id="form-print-{{ $signatory->id }}" method="POST" action="{{ route('admin.submissions.print', [$submission->id, 'signatory' => $signatory->id]) }}" class="d-inline form-print"
+            target="_blank">
+            @csrf
+          </form>
+          @endforeach
+        </div>
       </div>
-    </div>
-  </div> <!-- end col -->
-</div>
+    </div> <!-- end col -->
+  </div>
 
-@endsection
+  @endsection
 
-@section('script')
+  @section('script')
 
-<!-- Plugins js -->
-<script src="{{ URL::asset('assets/libs/datatables/datatables.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/magnific-popup/magnific-popup.min.js')}}"></script>
+  <!-- Plugins js -->
+  <script src="{{ URL::asset('assets/libs/datatables/datatables.min.js')}}"></script>
+  <script src="{{ URL::asset('assets/libs/magnific-popup/magnific-popup.min.js')}}"></script>
+  <script src="{{ URL::asset('assets/libs/tinymce/tinymce.min.js')}}"></script>
 
-<script src="{{ URL::asset('assets/js/pages/datatables.init.js')}}"></script>
-<script src="{{ URL::asset('assets/js/pages/lightbox.init.js')}}"></script>
+  <script src="{{ URL::asset('assets/js/pages/datatables.init.js')}}"></script>
+  <script src="{{ URL::asset('assets/js/pages/lightbox.init.js')}}"></script>
+  <script src="{{ URL::asset('assets/js/pages/form-editor.init.js')}}"></script>
 
-@endsection
+  @endsection

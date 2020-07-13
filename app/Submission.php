@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Submission extends Model
 {
     protected $fillable = [
-        'letter_id', 'data'
+        'number', 'letter_id', 'data'
     ];
 
     protected $casts = [

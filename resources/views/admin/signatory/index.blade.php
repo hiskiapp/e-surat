@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Pengajuan Surat: Menunggu Persetujuan')
+@section('title', 'Daftar Penandatangan')
 
 @section('css')
 <link href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
@@ -14,9 +14,23 @@
 <div class="row align-items-center">
     <div class="col-sm-6">
         @component('admin.components.breadcumb')
-        @slot('title') Pengajuan Surat: Menunggu Persetujuan @endslot
-        @slot('li_1') Admin @endslot
+        @slot('title') Daftar Penandatangan @endslot
+        @slot('li_1') Penandatangan @endslot
         @endcomponent
+    </div>
+
+    <div class="col-sm-6">
+        <div class="float-right d-md-block mb-3">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle waves-effect waves-light" type="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="mdi mdi-gesture-spread mr-2"></i> Action
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="{{ route('admin.signatories.create') }}">Tambah Data</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- end page title -->
@@ -26,52 +40,36 @@
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Pengajuan Surat: Menunggu Persetujuan</h4>
+                <h4 class="card-title">Daftar Penandatangan</h4>
                 @include('admin.components.message')
                 <table id="datatable" class="table table-bordered dt-responsive nowrap"
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Waktu Pengajuan</th>
-                            <th>Nomor Surat</th>
                             <th>Nama</th>
-                            <th>Jenis Surat</th>
+                            <th>Jabatan</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($submissions as $submission)
+                        @foreach($signatories as $signatory)
                         <tr>
-                            <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
-                            <td>{{ $submission->number ?? '-' }}</td>
-                            <td>{{ $submission->user->name }}</td>
-                            <td>{{ $submission->letter->name }}</td>
+                            <td>{{ $signatory->name }}</td>
+                            <td>{{ $signatory->position }}</td>
                             <td>
-                                <form method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}"
-                                    class="d-inline" target="_blank">
+                                <a class="btn btn-sm btn-warning waves-effect waves-light"
+                                    href="{{ route('admin.signatories.edit', $signatory->id) }}" role="button"><i
+                                        class="mdi mdi-grease-pencil"></i></a>
+                                <form method="POST" action="{{ route('admin.signatories.destroy', $signatory->id) }}"
+                                    class="d-inline form-delete">
                                     @csrf
-                                    <button type="submit" class="btn btn-sm btn-warning waves-effect waves-light"><i
-                                            class="mdi mdi-printer-check"></i> Cetak</button>
-                                </form>
-                                <form method="POST"
-                                    action="{{ route('admin.submissions.status', [$submission->id,1]) }}"
-                                    class="d-inline form-patch">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button type="submit" class="btn btn-sm btn-primary waves-effect waves-light"><i
-                                            class="mdi mdi-format-horizontal-align-right"></i> Setujui</button>
-                                </form>
-                                <form method="POST"
-                                    action="{{ route('admin.submissions.status', [$submission->id,1]) }}"
-                                    class="d-inline form-patch">
-                                    @csrf
-                                    @method('PATCH')
+                                    @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light"><i
-                                            class="mdi mdi-format-horizontal-align-left"></i> Tolak</button>
+                                            class="mdi mdi-trash-can"></i></button>
                                 </form>
                                 <a class="btn btn-sm btn-info waves-effect waves-light"
-                                    href="{{ route('admin.submissions.show', $submission->id) }}" role="button"><i
-                                        class="mdi mdi mdi-eye-circle"></i> Detail</a>
+                                    href="{{ route('admin.signatories.show', $signatory->id) }}" role="button"><i
+                                        class="mdi mdi mdi-eye-circle"></i></a>
                             </td>
                         </tr>
                         @endforeach
@@ -96,7 +94,7 @@
 <script src="{{ URL::asset('assets/js/pages/lightbox.init.js')}}"></script>
 
 <script type="text/javascript">
-    $(document).on('submit', '.form-patch', function (e) {
+    $(document).on('submit', '.form-delete', function (e) {
         var form = this;
         e.preventDefault();
         Swal.fire({
@@ -106,7 +104,7 @@
             showCancelButton: true,
             confirmButtonColor: "#34c38f",
             cancelButtonColor: "#f46a6a",
-            confirmButtonText: "Yes!"
+            confirmButtonText: "Yes, delete it!"
         }).then(function (result) {
             if (result.value) {
                 return form.submit();

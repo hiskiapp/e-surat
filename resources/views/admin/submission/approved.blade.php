@@ -29,35 +29,37 @@
                 <h4 class="card-title">Pengajuan Surat: Disetujui</h4>
                 @include('admin.components.message')
                 <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                    style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Waktu Pengajuan</th>
-                            <th>Nama</th>
-                            <th>Jenis Surat</th>
-                            <th>Waktu Penyetujuan</th>
-                            <th>Disetujui Oleh</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($submissions as $submission)
-                        <tr>
-                            <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
-                            <td>{{ $submission->user->name }}</td>
-                            <td>{{ $submission->letter->name }}</td>
-                            <td>{{ $submission->approval_at->formatLocalized('%d %B %Y %H:%M') }}</td>
-                            <td>{{ $submission->admin->name }}</td>
-                            <td>
-                                <form method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}"
-                                    class="d-inline" target="_blank">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-warning waves-effect waves-light"><i
-                                            class="mdi mdi-printer-check"></i> Cetak</button>
+                style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Waktu Pengajuan</th>
+                        <th>Nomor Surat</th>
+                        <th>Nama</th>
+                        <th>Jenis Surat</th>
+                        <th>Waktu Penyetujuan</th>
+                        <th>Disetujui Oleh</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($submissions as $submission)
+                    <tr>
+                        <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
+                        <td>{{ $submission->number ?? '-' }}</td>
+                        <td>{{ $submission->user->name }}</td>
+                        <td>{{ $submission->letter->name }}</td>
+                        <td>{{ $submission->approval_at->formatLocalized('%d %B %Y %H:%M') }}</td>
+                        <td>{{ $submission->admin->name }}</td>
+                        <td>
+                            <form method="POST" action="{{ route('admin.submissions.print', [$submission->id]) }}"
+                                class="d-inline" target="_blank">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-warning waves-effect waves-light"><i
+                                    class="mdi mdi-printer-check"></i> Cetak</button>
                                 </form>
                                 <a class="btn btn-sm btn-info waves-effect waves-light"
-                                    href="{{ route('admin.submissions.show', $submission->id) }}" role="button"><i
-                                        class="mdi mdi mdi-eye-circle"></i> Detail</a>
+                                href="{{ route('admin.submissions.show', $submission->id) }}" role="button"><i
+                                class="mdi mdi mdi-eye-circle"></i> Detail</a>
                             </td>
                         </tr>
                         @endforeach

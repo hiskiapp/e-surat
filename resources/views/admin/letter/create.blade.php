@@ -29,13 +29,6 @@
                 enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
-                    <label for="number" class="col-sm-2 col-form-label">Nomor Surat *</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="number" id="number" value="{{ old('number') }}"
-                        data-parsley-length="[5,255]" required>
-                    </div>
-                </div>
-                <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Nama Surat *</label>
                     <div class="col-sm-10">
                         <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}"
@@ -68,6 +61,7 @@
                                         <option value="text">String</option>
                                         <option value="number">Number</option>
                                         <option value="textarea">Text Area</option>
+                                        <option value="editor">Editor</option>
                                     </select>
                                 </div>
 

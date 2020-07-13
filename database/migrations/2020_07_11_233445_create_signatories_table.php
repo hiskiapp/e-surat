@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLettersTable extends Migration
+class CreateSignatoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateLettersTable extends Migration
      */
     public function up()
     {
-        Schema::create('letters', function (Blueprint $table) {
+        Schema::create('signatories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('content');
-            $table->json('data');
-            $table->enum('status', ['On', 'Off']);
+            $table->string('position');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -31,6 +28,6 @@ class CreateLettersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('letters');
+        Schema::dropIfExists('signatories');
     }
 }

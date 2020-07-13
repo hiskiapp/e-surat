@@ -12,7 +12,7 @@ class Letter extends Model
      * @var array
      */
     protected $fillable = [
-        'number', 'name', 'content', 'data', 'status'
+        'name', 'content', 'data', 'status'
     ];
 
     public function status()

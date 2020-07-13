@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Submission;
+use App\Signatory;
+use App\Signatories;
 use Activity;
 
 class SubmissionController extends Controller
@@ -39,8 +41,9 @@ class SubmissionController extends Controller
     public function show($id)
     {
         $submission = Submission::find($id);
+        $signatories = Signatory::all();
 
-        return view('admin.submission.show', ['submission' => $submission]);
+        return view('admin.submission.show', ['submission' => $submission, 'signatories' => $signatories]);
     }
 
     public function status($id, $status)
@@ -62,7 +65,8 @@ class SubmissionController extends Controller
     public function update(Request $request, $id)
     {
         $submission = Submission::find($id);
-        $submission->data = json_encode($request->except('_token','_method'));
+        $submission->number = $request->number;
+        $submission->data = json_encode($request->except('_token','_method','number'));
         $submission->save();
 
         Activity::add(['page' => 'Warga', 'description' => 'Berhasil Memperbarui Pengajuan Surat: #' . $id]);
@@ -73,19 +77,25 @@ class SubmissionController extends Controller
         ]);
     }
 
-    public function print($id)
+    public function print($id, Request $request)
     {
         $submission = Submission::find($id);
-        
-        $data['signatory_person'] = setting('vh_status') == 'On' ? setting('village_head') : setting('secretary');
-        $data['signatory_person_position'] = setting('vh_status') == 'On' ? 'Kepala Desa' : 'Sekretaris';
+
+        $signatory_id = $request->signatory ?? setting('signatory_active');
+        $signatory = Signatory::find($signatory_id);
+
+        $data['signatory_name'] = $signatory->name;
+        $data['signatory_position'] = $signatory->position;
 
         foreach($submission->user->toArray() as $key => $value){
             $data[$key] = $value;
         }
-
-        $data['nik'] = $submission->user->sin;
+        
         $data['ttl'] = $submission->user->getPsb();
+        $data['tgl'] = ucwords(strtolower(setting('village'))) . ', ' . now()->formatLocalized('%d %B %Y');
+        $data['districts'] = ucwords(strtolower(setting('districts')));
+        $data['sub-districts'] = ucwords(strtolower(setting('sub-districts')));
+        $data['village'] = ucwords(strtolower(setting('village')));
 
         foreach (json_decode($submission->data) as $key => $value) {
             $data[$key] = $value;

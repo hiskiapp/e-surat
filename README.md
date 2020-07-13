@@ -44,8 +44,14 @@ You will get the administrator credential and url access like example bellow:
 
 ```bash
 ::Administrator Credential::
-URL Login: http://localhost/admin/login
-Email: agus
+URL Login: http://localhost/e-surat/public/admin/login
+Email: admin
 Password: 123456
 
+```
+
+4. Run NPM
+
+```
+npm install && npm run dev
 ```

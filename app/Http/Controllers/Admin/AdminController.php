@@ -46,7 +46,13 @@ class AdminController extends Controller
 
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $path = 'uploads/' . auth()->user()->id . '/' . time() . '.' . $file->getClientOriginalExtension();
+            $path = 'uploads/' . auth()->user()->id . '/';
+
+            if (!file_exists(public_path($path))) {
+                mkdir($path, 666, true);
+            }
+            
+            $path .= time() . '.' . $file->getClientOriginalExtension();
             $image = Image::make($file)->resize(300, 300);
             $image->save(public_path($path));
             $data->photo = $path;

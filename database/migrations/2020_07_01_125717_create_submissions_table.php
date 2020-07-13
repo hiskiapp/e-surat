@@ -17,6 +17,7 @@ class CreateSubmissionsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('letter_id');
+            $table->string('number')->nullable();
             $table->json('data');
             $table->tinyInteger('approval_status');
             $table->timestamp('approval_at')->nullable();

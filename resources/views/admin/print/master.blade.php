@@ -38,19 +38,22 @@
 <body>
 	<page size="A4">
 		<div class="row">
-			<div class="col-3">
-				<img class="mt-4 ml-5" src="{{ asset(setting('logo')) }}" width="160">
+			<div class="col-2">
+				<img class="mt-5 ml-2" src="{{ asset(setting('leftlogo')) }}" width="100%">
 			</div>
-			<div class="col-9">
+			<div class="col-8">
 				<h3 class="mt-5 text-center">PEMERINTAH KABUPATEN {{ strtoupper(setting('districts')) }}</h3>
-				<h3 class="mt-3 text-center">KECAMATAN {{ strtoupper(setting('sub-districts')) }}</h3>
-				<h3 class="mt-3 text-center">DESA {{ strtoupper(setting('village')) }}</h3>
-				<p class="mt-3 text-center">{{ setting('header_down') }}</p>
+				<h3 class="mt-2 text-center">KECAMATAN {{ strtoupper(setting('sub-districts')) }}</h3>
+				<h3 class="mt-2 text-center">DESA {{ strtoupper(setting('village')) }}</h3>
+				<p class="text-center mb-0">Alamat: {{ setting('address') }}, Kode Pos: {{ setting('postal_code') }}</p>
+				<p class="text-center">Website: {{ setting('website') }}</p>
+			</div>
+			<div class="col-2">
+				<img class="mt-5" src="{{ asset(setting('rightlogo')) }}" width="100%">
 			</div>
 		</div>
 		<hr>
-
-		<div class="pl-5 pr-5 mt-3">
+		<div class="pl-3 pr-3 mt-3">
 			<div class="row">
 				<div class="col-12">
 					<h3 class="text-center">{{ $submission->letter->name }}</h3>
@@ -60,24 +63,6 @@
 			<div class="row">
 				<div class="col-12">
 					@yield('content')
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-6 ml-auto">
-					<p class="text-center h5">Mengetahui</p>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					@if(setting('vh_status') == 'On')
-					<p class="text-center h5">@setting('village_head')</p>
-					<p class="text-center h6">( Kepala Desa )</p>
-					@else
-					<p class="text-center h5">@setting('secretary')</p>
-					<p class="text-center h6">( Sekretaris )</p>
-					@endif
 				</div>
 			</div>
 		</div>

@@ -25,6 +25,7 @@ Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace
 		Route::resource('data', 'AdminController');
 		Route::resource('users', 'UserController');
 		Route::resource('letters', 'LetterController');
+		Route::resource('signatories', 'SignatoryController');
 
 		Route::get('submissions/pending', 'SubmissionController@pending')->name('submissions.pending');
 		Route::get('submissions/approved', 'SubmissionController@approved')->name('submissions.approved');

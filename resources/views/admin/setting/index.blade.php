@@ -34,13 +34,24 @@
                     @csrf
                     @method('PATCH')
                     <div class="form-group row">
-                        <label for="logo" class="col-sm-2 col-form-label">Logo</label>
+                        <label for="leftlogo" class="col-sm-2 col-form-label">Logo Kiri</label>
                         <div class="col-sm-10">
-                            <a class="image-popup-no-margins" href="{{ asset(setting('logo')) }}">
-                                <img class="img-fluid" alt="@setting('village')" src="{{ asset(setting('logo')) }}"
+                            <a class="image-popup-no-margins" href="{{ asset(setting('leftlogo')) }}">
+                                <img class="img-fluid" alt="@setting('village')" src="{{ asset(setting('leftlogo')) }}"
                                     width="120">
                             </a>
-                            <input class="form-control mt-2" type="file" name="logo" id="logo">
+                            <input class="form-control mt-2" type="file" name="leftlogo" id="leftlogo">
+                            <p class='help-block'>Please leave empty if not change.</p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="rightlogo" class="col-sm-2 col-form-label">Logo Kanan</label>
+                        <div class="col-sm-10">
+                            <a class="image-popup-no-margins" href="{{ asset(setting('rightlogo')) }}">
+                                <img class="img-fluid" alt="@setting('village')" src="{{ asset(setting('rightlogo')) }}"
+                                    width="120">
+                            </a>
+                            <input class="form-control mt-2" type="file" name="rightlogo" id="rightlogo">
                             <p class='help-block'>Please leave empty if not change.</p>
                         </div>
                     </div>
@@ -66,34 +77,34 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="village_head" class="col-sm-2 col-form-label">Nama Kepala Desa *</label>
+                        <label for="address" class="col-sm-2 col-form-label">Alamat *</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="village_head" id="village_head"
-                                value="@setting('village_head')" required>
+                        <textarea class="form-control" name="address">{{ setting('address') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="secretary" class="col-sm-2 col-form-label">Nama Sekretaris *</label>
+                        <label for="postal_code" class="col-sm-2 col-form-label">Kode Pos *</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="secretary" id="secretary"
-                                value="@setting('secretary')" required>
+                            <input class="form-control" type="text" name="postal_code" id="postal_code"
+                                value="@setting('postal_code')" required>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="vh_status" class="col-sm-2 col-form-label">Status Kepala Desa</label>
+                        <label for="website" class="col-sm-2 col-form-label">Website *</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="vh_status" id="vh_status" required>
+                            <input class="form-control" type="text" name="website" id="website"
+                                value="@setting('website')" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="signatory_active" class="col-sm-2 col-form-label">Penandatangan Surat</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="signatory_active" id="signatory_active" required>
                                 <option selected disabled>Select *</option>
-                                <option {{ setting('vh_status') == 'On' ? 'selected' : '' }} value="On">Hadir</option>
-                                <option {{ setting('vh_status') == 'Off' ? 'selected' : '' }} value="Off">Tidak Hadir
-                                </option>
+                                @foreach($signatories as $signatory)
+                                <option value="{{ $signatory->id }}" {{ $signatory->id == setting('signatory_active') ? 'selected' : '' }}>{{ $signatory->name }} - {{ $signatory->position }}</option>
+                                @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="header_down" class="col-sm-2 col-form-label">KOP Bawah *</label>
-                        <div class="col-sm-10">
-                        <textarea class="form-control" name="header_down">{{ setting('header_down') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group mb-0">

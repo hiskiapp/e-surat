@@ -40,7 +40,6 @@ class LetterController extends Controller
     public function store(LetterRequest $request)
     {
         $letter = new Letter;
-        $letter->number = $request->number;
         $letter->name = $request->name;
         $letter->content = $request->content;
         $letter->data = json_encode($request->data);
@@ -91,7 +90,6 @@ class LetterController extends Controller
      */
     public function update(LetterRequest $request, Letter $letter)
     {
-        $letter->number = $request->number;
         $letter->name = $request->name;
         $letter->content = $request->content;
         $letter->data = json_encode($request->data);

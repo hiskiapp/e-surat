@@ -5,7 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Waavi\Sanitizer\Laravel\SanitizesInput;
 
-class LetterRequest extends FormRequest
+class SignatoryRequest extends FormRequest
 {
     use SanitizesInput;
 
@@ -28,7 +28,7 @@ class LetterRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5|max:255',
-            'status' => 'in:on,off',
+            'position' => 'required|min:5|max:255',
         ];
     }
 
@@ -41,6 +41,7 @@ class LetterRequest extends FormRequest
     {
         return [
             'name' => 'trim|escape|capitalize',
+            'position' => 'trim|escape|capitalize',
         ];
     }
 }

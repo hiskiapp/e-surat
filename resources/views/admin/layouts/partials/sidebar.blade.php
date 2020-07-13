@@ -51,6 +51,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.signatories.index') }}" class=" waves-effect">
+                        <i class="ti-receipt"></i>
+                        <span>Penandatangan</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.helpers') }}" class=" waves-effect">
                         <i class="ti-hand-point-right"></i>
                         <span>Helpers</span>

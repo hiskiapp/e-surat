@@ -30,13 +30,6 @@
                     @csrf
                     @method('PATCH')
                     <div class="form-group row">
-                        <label for="number" class="col-sm-2 col-form-label">Nomor Surat *</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="text" name="number" id="number" value="{{ old('number') ?? $letter->number }}"
-                            data-parsley-length="[5,255]" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label for="name" class="col-sm-2 col-form-label">Nama Surat *</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="name" id="name"
@@ -70,6 +63,7 @@
                                         <option value="text"{{ $data->input_type == 'text' ? 'selected' : ''}}>String</option>
                                         <option value="number"{{ $data->input_type == 'number' ? 'selected' : ''}}>Number</option>
                                         <option value="textarea"{{ $data->input_type == 'textarea' ? 'selected' : ''}}>Text Area</option>
+                                        <option value="editor"{{ $data->input_type == 'editor' ? 'selected' : ''}}>Editor</option>
                                     </select>
                                 </div>
 
