@@ -48,7 +48,7 @@ class InstallProject extends Command
             $this->call('config:clear');
             $this->info('Installing E-Surat Is Completed ! Thank You :)');
             $this->info('--');
-            $this->info("::Administrator Credential::\n URL Login: http://localhost/e-surat/admin/login\nUsername: agus \nPassword: 123456");
+            $this->info("::Administrator Credential::\n URL Login: http://localhost/e-surat/admin/login\nUsername: admin \nPassword: 123456");
         } else {
             $this->info('Setup Aborted !');
             $this->info('Please setting the database configuration for first !');

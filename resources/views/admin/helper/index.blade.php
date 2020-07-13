@@ -66,7 +66,7 @@
                             <td>[address]</td>
                         </tr>
                         <tr>
-                            <td><strong>Desa, Tanggal</strong></td>
+                            <td><strong>Tanggal</strong></td>
                             <td>[tgl]</td>
                         </tr>
                         <tr>

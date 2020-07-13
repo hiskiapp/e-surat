@@ -92,7 +92,7 @@ class SubmissionController extends Controller
         }
 
         $data['ttl'] = $submission->user->getPsb();
-        $data['tgl'] = ucwords(strtolower(setting('village'))) . ', ' . now()->formatLocalized('%d %B %Y');
+        $data['tgl'] = now()->formatLocalized('%d %B %Y');
         $data['districts'] = ucwords(strtolower(setting('districts')));
         $data['sub-districts'] = ucwords(strtolower(setting('sub-districts')));
         $data['village'] = ucwords(strtolower(setting('village')));
