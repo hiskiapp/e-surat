@@ -66,7 +66,7 @@ class SubmissionController extends Controller
     {
         $submission = Submission::find($id);
         $submission->number = $request->number;
-        $submission->data = json_encode($request->except('_token','_method','number'));
+        $submission->data = json_encode($request->except('_token', '_method', 'number'));
         $submission->save();
 
         Activity::add(['page' => 'Warga', 'description' => 'Berhasil Memperbarui Pengajuan Surat: #' . $id]);
@@ -87,10 +87,10 @@ class SubmissionController extends Controller
         $data['signatory_name'] = $signatory->name;
         $data['signatory_position'] = $signatory->position;
 
-        foreach($submission->user->toArray() as $key => $value){
+        foreach ($submission->user->toArray() as $key => $value) {
             $data[$key] = $value;
         }
-        
+
         $data['ttl'] = $submission->user->getPsb();
         $data['tgl'] = ucwords(strtolower(setting('village'))) . ', ' . now()->formatLocalized('%d %B %Y');
         $data['districts'] = ucwords(strtolower(setting('districts')));
@@ -102,7 +102,7 @@ class SubmissionController extends Controller
         }
 
         $content = $submission->letter->content;
-        foreach($data as $key => $value){
+        foreach ($data as $key => $value) {
             $content = str_replace('[' . $key . ']', $value, $content);
         }
 

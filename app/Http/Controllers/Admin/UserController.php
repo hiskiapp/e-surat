@@ -52,7 +52,7 @@ class UserController extends Controller
             if (!file_exists(public_path($path))) {
                 mkdir($path, 666, true);
             }
-            
+
             $path .= time() . '.' . $file->getClientOriginalExtension();
             $image = Image::make($file)->resize(300, 300);
             $image->save(public_path($path));

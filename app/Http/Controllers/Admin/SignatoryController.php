@@ -103,5 +103,4 @@ class SignatoryController extends Controller
 
         return back()->with(['status' => 'success', 'message' => 'Penandatangan Berhasil Dihapus!']);
     }
-
 }

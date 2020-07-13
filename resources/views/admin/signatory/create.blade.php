@@ -38,8 +38,8 @@
                     <div class="form-group row">
                         <label for="position" class="col-sm-2 col-form-label">Jabatan *</label>
                         <div class="col-sm-10">
-                            <input class="form-control" type="text" name="position" id="position" value="{{ old('position') }}"
-                                data-parsley-length="[5,255]" required>
+                            <input class="form-control" type="text" name="position" id="position"
+                                value="{{ old('position') }}" data-parsley-length="[5,255]" required>
                         </div>
                     </div>
                     <div class="form-group mb-0">

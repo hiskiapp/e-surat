@@ -29,8 +29,8 @@
 
                 @include('admin.components.message')
 
-                <form class="custom-validation" method="POST" action="{{ route('admin.signatories.update', $signatory->id) }}"
-                    enctype="multipart/form-data">
+                <form class="custom-validation" method="POST"
+                    action="{{ route('admin.signatories.update', $signatory->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="form-group row">
@@ -44,7 +44,8 @@
                         <label for="position" class="col-sm-2 col-form-label">Jabatan *</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="position" id="position"
-                                value="{{ old('position') ?? $signatory->position }}" data-parsley-length="[5,255]" required>
+                                value="{{ old('position') ?? $signatory->position }}" data-parsley-length="[5,255]"
+                                required>
                         </div>
                     </div>
                     <div class="form-group mb-0">
@@ -52,8 +53,8 @@
                             <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
                                 Submit
                             </button>
-                            <a class="btn btn-secondary waves-effect waves-light" href="{{ route('admin.signatories.index') }}"
-                                role="button">Cancel</a>
+                            <a class="btn btn-secondary waves-effect waves-light"
+                                href="{{ route('admin.signatories.index') }}" role="button">Cancel</a>
                         </div>
                     </div>
                 </form>

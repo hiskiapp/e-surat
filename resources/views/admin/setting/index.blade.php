@@ -79,7 +79,7 @@
                     <div class="form-group row">
                         <label for="address" class="col-sm-2 col-form-label">Alamat *</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="address">{{ setting('address') }}</textarea>
+                            <textarea class="form-control" name="address">{{ setting('address') }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -102,7 +102,9 @@
                             <select class="form-control" name="signatory_active" id="signatory_active" required>
                                 <option selected disabled>Select *</option>
                                 @foreach($signatories as $signatory)
-                                <option value="{{ $signatory->id }}" {{ $signatory->id == setting('signatory_active') ? 'selected' : '' }}>{{ $signatory->name }} - {{ $signatory->position }}</option>
+                                <option value="{{ $signatory->id }}"
+                                    {{ $signatory->id == setting('signatory_active') ? 'selected' : '' }}>
+                                    {{ $signatory->name }} - {{ $signatory->position }}</option>
                                 @endforeach
                             </select>
                         </div>

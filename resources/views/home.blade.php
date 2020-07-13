@@ -11,10 +11,10 @@
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item active">Selamat Datang di Dashboard
                     {{ config('app.name') }}, {{ auth()->user()->name }}!</li>
-                </ol>
-            </div>
+            </ol>
         </div>
     </div>
+</div>
 </div>
 <!-- end page title -->
 <div class="row">
@@ -29,30 +29,37 @@
                     <div class="card mb-1">
                         <div class="card-header p-3" id="heading{{ $letter->id }}">
                             <h6 class="m-0 font-14">
-                                <a href="#collapse{{ $letter->id }}" class="text-dark" data-toggle="collapse" aria-expanded="true"
+                                <a href="#collapse{{ $letter->id }}" class="text-dark" data-toggle="collapse"
+                                    aria-expanded="true"
                                     aria-controls="collapse{{ $letter->id }}">{{ $letter->name }}</a>
-                                </h6>
-                            </div>
+                            </h6>
+                        </div>
 
-                            <div id="collapse{{ $letter->id }}" class="collapse" aria-labelledby="heading{{ $letter->id }}" data-parent="#accordion">
-                                <div class="card-body">
-                                    <form class="custom-validation" method="POST" action="{{ route('store', 1) }}"
+                        <div id="collapse{{ $letter->id }}" class="collapse" aria-labelledby="heading{{ $letter->id }}"
+                            data-parent="#accordion">
+                            <div class="card-body">
+                                <form class="custom-validation" method="POST" action="{{ route('store', 1) }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @foreach(json_decode($letter->data) as $data)
                                     <div class="form-group row">
-                                        <label for="{{ $data->input_name }}" class="col-sm-2 col-form-label">{{ $data->input_label }}</label>
+                                        <label for="{{ $data->input_name }}"
+                                            class="col-sm-2 col-form-label">{{ $data->input_label }}</label>
                                         <div class="col-sm-10">
                                             @switch($data->input_type)
                                             @case('number')
-                                            <input class="form-control" type="number" name="{{ $data->input_name }}" id="{{ $data->input_name }}" value="{{ old($data->input_name) }}" required>
+                                            <input class="form-control" type="number" name="{{ $data->input_name }}"
+                                                id="{{ $data->input_name }}" value="{{ old($data->input_name) }}"
+                                                required>
                                             @break
                                             @case('text')
-                                            <input class="form-control" type="text" name="{{ $data->input_name }}" id="{{ $data->input_name }}"
-                                            value="{{ old($data->input_name) }}" required>
+                                            <input class="form-control" type="text" name="{{ $data->input_name }}"
+                                                id="{{ $data->input_name }}" value="{{ old($data->input_name) }}"
+                                                required>
                                             @break
                                             @default
-                                            <textarea name="{{ $data->input_name }}" class="form-control" rows="3">{{ old($data->input_name) }}</textarea>
+                                            <textarea name="{{ $data->input_name }}" class="form-control"
+                                                rows="3">{{ old($data->input_name) }}</textarea>
                                             @endswitch
 
                                         </div>
