@@ -12,6 +12,6 @@ class SignatorySeeder extends Seeder
      */
     public function run()
     {
-        Setting::create(['name' => 'Joko Widodo', 'position' => 'Kepala Desa']);
+        Signatory::create(['name' => 'Joko Widodo', 'position' => 'Kepala Desa']);
     }
 }
