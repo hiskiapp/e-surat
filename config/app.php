@@ -230,7 +230,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        // Package Aliases
+        // Package
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Setting' => Akaunting\Setting\Facade::class,

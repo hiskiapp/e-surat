@@ -26,7 +26,14 @@ cd e-surat
 composer install
 ```
 
-2. Setting the database configuration, open .env file at project root directory
+2. Run NPM
+
+```
+npm install && npm run dev
+```
+
+
+3. Setting the database configuration, open .env file at project root directory
 
 ```
 DB_DATABASE=**your_db_name**
@@ -34,7 +41,7 @@ DB_USERNAME=**your_db_user**
 DB_PASSWORD=**password**
 ```
 
-3. Install Project
+4. Install Project
 
 ```bash
 php artisan project:install
@@ -48,10 +55,4 @@ URL Login: http://localhost/e-surat/public/admin/login
 Email: admin
 Password: 123456
 
-```
-
-4. Run NPM
-
-```
-npm install && npm run dev
 ```

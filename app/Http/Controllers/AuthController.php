@@ -51,12 +51,12 @@ class AuthController extends Controller
     private function validator(Request $request)
     {
         $rules = [
-            'sin'    => 'required|string|exists:users|min:4|max:191',
-            'password' => 'required|string|min:6|max:255',
+            $this->username() => 'required|string|exists:users|min:4|max:191',
+            'password'        => 'required|string|min:6|max:255',
         ];
 
         $messages = [
-            'sin.exists' => 'These credentials do not match our records.',
+            $this->username() . '.exists' => 'These credentials do not match our records.',
         ];
 
         $request->validate($rules, $messages);

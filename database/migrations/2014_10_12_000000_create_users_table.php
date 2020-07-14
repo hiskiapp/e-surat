@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('profession')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

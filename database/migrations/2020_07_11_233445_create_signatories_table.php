@@ -18,6 +18,7 @@ class CreateSignatoriesTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

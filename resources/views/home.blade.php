@@ -83,11 +83,3 @@
     </div>
 </div>
 @endsection
-@section('script')
-
-<!-- Plugins js -->
-<script src="{{ URL::asset('assets/libs/tinymce/tinymce.min.js')}}"></script>
-
-<script src="{{ URL::asset('assets/js/pages/form-editor.init.js')}}"></script>
-
-@endsection

@@ -33,6 +33,7 @@ class AuthController extends Controller
 
         if (Auth::guard('admin')->attempt($request->only($this->username(), 'password'), $request->filled('remember'))) {
             Activity::add(['page' => 'Login', 'description' => 'Masuk Ke Website']);
+
             return redirect()->route('admin.home')->with('status', 'You are Logged in as Admin!');
         }
 
@@ -49,12 +50,12 @@ class AuthController extends Controller
     private function validator(Request $request)
     {
         $rules = [
-            'username'    => 'required|string|exists:admins|min:4|max:191',
-            'password' => 'required|string|min:6|max:255',
+            $this->username() => 'required|string|exists:admins|min:4|max:191',
+            'password'        => 'required|string|min:6|max:255',
         ];
 
         $messages = [
-            'username.exists' => 'These credentials do not match our records.',
+            $this->username() . '.exists' => 'These credentials do not match our records.',
         ];
 
         $request->validate($rules, $messages);

@@ -104,7 +104,7 @@
                             <td>{{ $user->sin }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->getPsb() }}</td>
-                            <td>{{ $user->getShortGender() }}</td>
+                            <td>{{ $user->gender }}</td>
                             <td>{{ $user->address ?? '-' }}</td>
                             <td>
                                 <a class="btn btn-sm btn-warning waves-effect waves-light"

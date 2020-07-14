@@ -3,14 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Letter extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    use SoftDeletes;
+    
     protected $fillable = [
         'name', 'content', 'data', 'status'
     ];

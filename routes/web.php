@@ -12,53 +12,61 @@
 */
 
 // Admin Routes
-Route::group(['prefix' => config('app.admin_path'), 'as' => 'admin.', 'namespace' => 'Admin'], function () {
+Route::prefix(config('app.admin_path'))->name('admin.')->namespace('Admin')->group(function () {
 	Route::get('/', function () {
-		return redirect('admin/home');
+		return redirect()->route('admin.home');
 	});
+
 	Route::get('login', 'AuthController@index')->name('login');
 	Route::post('login', 'AuthController@login')->name('login');
 	Route::post('logout', 'AuthController@logout')->name('logout');
 
-	Route::group(['middleware' => 'auth:admin'], function () {
+	Route::middleware('auth:admin')->group(function () {
 		Route::get('home', 'HomeController@index')->name('home');
+
+		Route::prefix('submissions')->name('submissions.')->group(function () {
+			Route::get('pending', 'SubmissionController@pending')->name('pending');
+			Route::get('approved', 'SubmissionController@approved')->name('approved');
+			Route::get('rejected', 'SubmissionController@rejected')->name('rejected');
+			Route::get('show/{id}', 'SubmissionController@show')->name('show');
+			Route::patch('status/{id}/{status}', 'SubmissionController@status')->name('status');
+			Route::patch('update/{id}', 'SubmissionController@update')->name('update');
+			Route::post('print/{id}', 'SubmissionController@print')->name('print');
+		});
+
 		Route::resource('data', 'AdminController');
 		Route::resource('users', 'UserController');
 		Route::resource('letters', 'LetterController');
 		Route::resource('signatories', 'SignatoryController');
-
-		Route::get('submissions/pending', 'SubmissionController@pending')->name('submissions.pending');
-		Route::get('submissions/approved', 'SubmissionController@approved')->name('submissions.approved');
-		Route::get('submissions/rejected', 'SubmissionController@rejected')->name('submissions.rejected');
-		Route::get('submissions/show/{id}', 'SubmissionController@show')->name('submissions.show');
-		Route::patch('submissions/status/{id}/{status}', 'SubmissionController@status')->name('submissions.status');
-		Route::patch('submissions/update/{id}', 'SubmissionController@update')->name('submissions.update');
-		Route::post('submissions/print/{id}', 'SubmissionController@print')->name('submissions.print');
-
-		// Import
-		Route::post('import/data', 'ImportController@admin')->name('import.data');
-		Route::post('import/users', 'ImportController@user')->name('import.users');
-
-		// Account
-		Route::get('account', 'AccountController@index')->name('account');
-		Route::patch('account', 'AccountController@update')->name('account');
-		Route::get('account/password', 'AccountController@password')->name('account.password');
-		Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
-		Route::get('account/logs', 'AccountController@logs')->name('account.logs');
-
-		// Setting
-		Route::get('settings', 'SettingController@index')->name('settings');
-		Route::patch('settings', 'SettingController@update')->name('settings');
-
-		// Helper
 		Route::view('helpers', 'admin.helper.index')->name('helpers');
+
+		Route::prefix('import')->name('import.')->group(function () {
+			Route::post('data', 'ImportController@admin')->name('data');
+			Route::post('users', 'ImportController@user')->name('users');
+		});
+
+		Route::prefix('account')->group(function () {
+			Route::get('/', 'AccountController@index')->name('account');
+			Route::patch('/', 'AccountController@update')->name('account');
+			Route::name('account.')->group(function () {
+				Route::get('password', 'AccountController@password')->name('password');
+				Route::patch('password', 'AccountController@patchPassword')->name('password');
+				Route::get('logs', 'AccountController@logs')->name('logs');
+			});
+		});
+
+		Route::prefix('settings')->name('settings')->group(function () {
+			Route::get('/', 'SettingController@index');
+			Route::patch('/', 'SettingController@update');
+		});
 	});
 });
 
 // User Routes
 Route::get('/', function () {
-	return redirect('home');
+	return redirect()->route('home');
 });
+
 Route::get('login', 'AuthController@index')->name('login');
 Route::post('login', 'AuthController@login')->name('login');
 Route::post('logout', 'AuthController@logout')->name('logout');
@@ -67,9 +75,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('home', 'HomeController@index')->name('home');
 	Route::post('store/{letter}', 'SubmissionController@store')->name('store');
 
-	// Account
-	Route::get('account', 'AccountController@index')->name('account');
-	Route::get('account/password', 'AccountController@password')->name('account.password');
-	Route::patch('account/password', 'AccountController@patchPassword')->name('account.password');
-	Route::get('account/logs', 'AccountController@logs')->name('account.logs');
+	Route::prefix('account')->group(function () {
+		Route::get('/', 'AccountController@index')->name('account');
+		Route::name('account.')->group(function () {
+			Route::get('password', 'AccountController@password')->name('password');
+			Route::patch('password', 'AccountController@patchPassword')->name('password');
+			Route::get('logs', 'AccountController@logs')->name('logs');
+		});
+	});
 });
