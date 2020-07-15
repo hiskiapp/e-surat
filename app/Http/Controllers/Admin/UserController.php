@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UserRequest;
+use Illuminate\Http\Request;
 use App\User;
 use App\ActivityLog;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UserStoreRequest;
-use App\Http\Requests\Admin\UserUpdateRequest;
-use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Activity;
 use Hash;
@@ -41,7 +40,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserStoreRequest $request)
+    public function store(UserRequest $request)
     {
         $user = new User;
 
@@ -117,7 +116,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');

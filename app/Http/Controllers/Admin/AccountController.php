@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\AccountRequest;
+use Illuminate\Http\Request;
+use App\Http\Requests\AccountRequest;
+use App\Http\Requests\PasswordRequest;
 use App\Admin;
 use App\ActivityLog;
-use App\Rules\MatchOldPassword;
-use Illuminate\Http\Request;
 use Activity;
 use Hash;
 
@@ -37,14 +37,8 @@ class AccountController extends Controller
         return view('admin.account.password');
     }
 
-    public function patchPassword(Request $request)
+    public function patchPassword(PasswordRequest $request)
     {
-        $request->validate([
-            'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
-        ]);
-
         $data = Admin::find(auth('admin')->user()->id);
         $data->password = Hash::make($request->new_password);
         $data->save();

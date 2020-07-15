@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Admin;
-use App\ActivityLog;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\AdminStoreRequest;
-use App\Http\Requests\Admin\AdminUpdateRequest;
+use App\Http\Requests\Admin\AdminRequest;
+use App\Admin;
+use App\ActivityLog;
 use Activity;
 use Hash;
 use Image;
@@ -40,7 +39,7 @@ class AdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdminStoreRequest $request)
+    public function store(AdminRequest $request)
     {
         $data = new Admin;
 
@@ -105,7 +104,7 @@ class AdminController extends Controller
      * @param  \App\Admin  $data
      * @return \Illuminate\Http\Response
      */
-    public function update(AdminUpdateRequest $request, Admin $data)
+    public function update(AdminRequest $request, Admin $data)
     {
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');

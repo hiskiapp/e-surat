@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\AccountRequest;
+use App\Http\Requests\PasswordRequest;
 use App\User;
 use App\ActivityLog;
-use App\Rules\MatchOldPassword;
 use Activity;
 use Hash;
 
@@ -18,26 +17,13 @@ class AccountController extends Controller
         return view('account.index', ['user' => $user]);
     }
 
-    public function update(AccountRequest $request)
-    {
-        $user = auth()->user();
-        $user->update($request->validated());
-        return view('account.index', ['user' => $user]);
-    }
-
     public function password()
     {
         return view('account.password');
     }
 
-    public function patchPassword(Request $request)
+    public function patchPassword(PasswordRequest $request)
     {
-        $request->validate([
-            'current_password' => ['required', new MatchOldPassword],
-            'new_password' => ['required'],
-            'new_confirm_password' => ['same:new_password'],
-        ]);
-
         $data = auth()->user();
         $data->password = Hash::make($request->new_password);
         $data->save();
