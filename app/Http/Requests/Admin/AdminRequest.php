@@ -42,7 +42,7 @@ class AdminRequest extends FormRequest
             return [
                 'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'name' => 'required|min:5|max:255',
-                'username' => 'required|min:5|max:255|unique:admins,username,' .  . $this->data->id,
+                'username' => 'required|min:5|max:255|unique:admins,username,' . $this->data->id,
             ];
             default: break;
         }

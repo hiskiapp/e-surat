@@ -12,7 +12,15 @@
 	<link href="{{ URL::asset('assets/css/bootstrap.min.css') }}" id="bootstrap-light" rel="stylesheet" type="text/css" />
 	<style type="text/css">
 		body {
-			background: rgb(204, 204, 204);
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			background-color: #FAFAFA;
+			font: 12pt "Tahoma";
+		}
+		* {
+			box-sizing: border-box;
+			-moz-box-sizing: border-box;
 		}
 
 		page {
@@ -26,10 +34,11 @@
 		}
 
 		@media print {
-
-			body,
-			page {
-				width: 21cm;
+			html, body {
+				width: 210mm;
+				height: 297mm;
+				margin: 0;
+				padding: 0;
 			}
 		}
 	</style>
