@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-12">
 					<h3 class="text-center">{{ $submission->letter->name }}</h3>
-					<p class="text-center h5">{{ $submission->number ?? '-' }}</p>
+					<p class="text-center h5">NOMOR: {{ $submission->number ?? '-' }}</p>
 				</div>
 			</div>
 			<div class="row">

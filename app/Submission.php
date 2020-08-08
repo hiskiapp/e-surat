@@ -11,7 +11,7 @@ class Submission extends Model
     ];
 
     protected $casts = [
-        'approval_at' => 'date',
+        'approval_at' => 'datetime',
     ];
 
     public function user()

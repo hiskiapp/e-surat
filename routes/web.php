@@ -27,6 +27,7 @@ Route::prefix(config('app.admin_path'))->name('admin.')->namespace('Admin')->gro
 		Route::prefix('submissions')->name('submissions.')->group(function () {
 			Route::get('pending', 'SubmissionController@pending')->name('pending');
 			Route::get('approved', 'SubmissionController@approved')->name('approved');
+			Route::post('approved/export', 'SubmissionController@exportApproved')->name('approved.export');
 			Route::get('rejected', 'SubmissionController@rejected')->name('rejected');
 			Route::get('show/{id}', 'SubmissionController@show')->name('show');
 			Route::patch('status/{id}/{status}', 'SubmissionController@status')->name('status');

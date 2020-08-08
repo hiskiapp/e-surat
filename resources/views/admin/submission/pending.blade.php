@@ -62,7 +62,7 @@
                                             class="mdi mdi-format-horizontal-align-right"></i> Setujui</button>
                                 </form>
                                 <form method="POST"
-                                    action="{{ route('admin.submissions.status', [$submission->id,1]) }}"
+                                    action="{{ route('admin.submissions.status', [$submission->id,2]) }}"
                                     class="d-inline form-patch">
                                     @csrf
                                     @method('PATCH')

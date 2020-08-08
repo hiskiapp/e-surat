@@ -7,15 +7,17 @@ use Illuminate\Http\Request;
 use App\Submission;
 use App\Signatory;
 use App\Signatories;
+use App\Exports\SubmissionsExport;
 use Activity;
+use Excel;
 
 class SubmissionController extends Controller
 {
     public function pending()
     {
         $submissions = Submission::with('user', 'letter')
-            ->where('approval_status', 0)
-            ->get();
+        ->where('approval_status', 0)
+        ->get();
 
         return view('admin.submission.pending', ['submissions' => $submissions]);
     }
@@ -23,17 +25,22 @@ class SubmissionController extends Controller
     public function approved()
     {
         $submissions = Submission::with('user', 'letter', 'admin')
-            ->where('approval_status', 1)
-            ->get();
+        ->where('approval_status', 1)
+        ->get();
 
         return view('admin.submission.approved', ['submissions' => $submissions]);
+    }
+
+    public function exportApproved()
+    {
+        return Excel::download(new SubmissionsExport, 'Surat Yang Disetujui ' . now()->format('d-M-Y') . '.xlsx');
     }
 
     public function rejected()
     {
         $submissions = Submission::with('user', 'letter', 'admin')
-            ->where('approval_status', 2)
-            ->get();
+        ->where('approval_status', 2)
+        ->get();
 
         return view('admin.submission.rejected', ['submissions' => $submissions]);
     }
@@ -56,7 +63,8 @@ class SubmissionController extends Controller
 
         Activity::add(['page' => 'Warga', 'description' => 'Berhasil Mengubah Status Pengajuan Surat: #' . $id]);
 
-        return back()->with([
+        $route = $status == 1 ? route('admin.submissions.approved') : route('admin.submissions.rejected');
+        return redirect($route)->with([
             'status' => 'success',
             'message' => 'Mengubah Status Pengajuan Surat: #' . $id
         ]);
@@ -86,6 +94,7 @@ class SubmissionController extends Controller
 
         $data['signatory_name'] = $signatory->name;
         $data['signatory_position'] = $signatory->position;
+        $data['on_behalf'] = $signatory_id != 1 ? 'A/N, Perbengkel ' . ucwords(strtolower(setting('village'))) : '';
 
         foreach ($submission->user->toArray() as $key => $value) {
             $data[$key] = $value;

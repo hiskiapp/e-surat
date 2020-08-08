@@ -34,6 +34,10 @@
                             <td>[signatory_position]</td>
                         </tr>
                         <tr>
+                            <td><strong>Atas Nama Perbengkel</strong> (Jika Perbengkel Tidak Hadir Akan Muncul)</td>
+                            <td>[on_behalf]</td>
+                        </tr>
+                        <tr>
                             <td><strong>Nama</strong></td>
                             <td>[name]</td>
                         </tr>
