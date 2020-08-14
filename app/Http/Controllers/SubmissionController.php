@@ -9,6 +9,13 @@ use Activity;
 
 class SubmissionController extends Controller
 {
+    public function index()
+    {
+        $submissions = Submission::where('user_id', auth()->id())->get();
+
+        return view('submissions', ['submissions' => $submissions]);
+    }
+
     public function store($letter, Request $request)
     {
         $letter = Letter::find($letter);

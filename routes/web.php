@@ -74,7 +74,8 @@ Route::post('logout', 'AuthController@logout')->name('logout');
 
 Route::middleware('auth')->group(function () {
 	Route::get('home', 'HomeController@index')->name('home');
-	Route::post('store/{letter}', 'SubmissionController@store')->name('store');
+	Route::get('submissions', 'SubmissionController@index')->name('submissions.index');
+	Route::post('submissions/store/{letter}', 'SubmissionController@store')->name('submissions.store');
 
 	Route::prefix('account')->group(function () {
 		Route::get('/', 'AccountController@index')->name('account');

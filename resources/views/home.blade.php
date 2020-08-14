@@ -38,7 +38,7 @@
                         <div id="collapse{{ $letter->id }}" class="collapse" aria-labelledby="heading{{ $letter->id }}"
                             data-parent="#accordion">
                             <div class="card-body">
-                                <form class="custom-validation" method="POST" action="{{ route('store', 1) }}"
+                                <form class="custom-validation" method="POST" action="{{ route('submissions.store', $letter->id) }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     @foreach(json_decode($letter->data) as $data)

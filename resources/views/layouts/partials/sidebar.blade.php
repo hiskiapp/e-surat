@@ -16,6 +16,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('submissions.index') }}" class="waves-effect">
+                        <i class="ti-email"></i>
+                        <span>Riwayat Pengajuan Surat</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('account') }}" class="waves-effect">
                         <i class="mdi mdi-clipboard-list-outline"></i>
                         <span>Data Diri</span>
