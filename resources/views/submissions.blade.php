@@ -43,12 +43,12 @@
                 <tbody>
                     @foreach($submissions as $submission)
                     <tr>
-                        <td>{{ $submission->created_at->formatLocalized('%d %B %Y %H:%M') }}</td>
+                        <td>{{ optional($submission->created_at)->formatLocalized('%d %B %Y %H:%M') ?? '-' }}</td>
                         <td>{{ $submission->number ?? '-' }}</td>
                         <td>{{ $submission->letter->name }}</td>
                         <td>{{ $submission->getStatus() }}</td>
-                        <td>{{ $submission->approval_at->formatLocalized('%d %B %Y %H:%M') }}</td>
-                        <td>{{ $submission->admin->name }}</td>
+                        <td>{{ optional($submission->approval_at)->formatLocalized('%d %B %Y %H:%M') ?? '-' }}</td>
+                        <td>{{ optional($submission->admin)->name ?? '-' }}</td>
                         @endforeach
                     </tbody>
                 </table>

@@ -18,7 +18,7 @@
                 <li>
                     <a href="{{ route('submissions.index') }}" class="waves-effect">
                         <i class="ti-email"></i>
-                        <span>Riwayat Pengajuan Surat</span>
+                        <span>Riwayat Pengajuan</span>
                     </a>
                 </li>
                 <li>
