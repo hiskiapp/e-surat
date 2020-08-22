@@ -7,6 +7,8 @@ Contact: themesbrand@gmail.com
 File: Main Js File
 */
 
+import route from 'ziggy';
+import { Ziggy } from './ziggy';
 
 (function ($) {
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use App\Submission;
 use App\Signatory;
 use App\Signatories;
@@ -60,6 +61,40 @@ class SubmissionController extends Controller
         $submission->approval_at = now();
         $submission->admin_id = auth('admin')->user()->id;
         $submission->save();
+
+        if ($status == 1) {
+            $message = 'Pengajuan '. $submission->letter->name . ' oleh: ' . $submission->user->name . ' telah disetujui!';
+        }else{
+            $message = 'Pengajuan '. $submission->letter->name . ' oleh: ' . $submission->user->name . ' telah ditolak!';
+        }
+
+        // $response = Http::withHeaders(['Authorization' => '#'])->post('https://fonnte.com/api/send_message.php', [
+        //     'phone' => '6285155064115',
+        //     'type' => 'text',
+        //     'text' => $message
+        // ]);
+        
+        $curl = curl_init();
+        $token = config('whatsapp.token');
+        $data = [
+            'phone' => $submission->user->phone_number,
+            'type' => 'text',
+            'text' => $message
+        ];
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER,
+            array(
+                "Authorization: $token",
+            )
+        );
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        $result = curl_exec($curl);
+        curl_close($curl);
 
         Activity::add(['page' => 'Warga', 'description' => 'Berhasil Mengubah Status Pengajuan Surat: #' . $id]);
 

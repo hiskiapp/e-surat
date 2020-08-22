@@ -21,6 +21,41 @@
 <!-- end page title -->
 
 <div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Nomor Whatsapp</h4>
+                <p class="card-title-desc">Dapatkan pemberitahun mengenai pengajuan surat melalui Whatsapp. ex: 6281234567890 (jika format salah, pesan tidak akan terkirim)</p>
+
+                @include('components.message')
+
+                <form class="custom-validation" method="POST" action="{{ route('account.whatsapp') }}"
+                    enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="form-group row">
+                        <label for="phone_number" class="col-sm-2 col-form-label">Nomor Whatsapp</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="phone_number" id="phone_number"
+                                value="{{ old('phone_number', $user->phone_number ?? '628') }}" data-parsley-length="[5,255]" required>
+                        </div>
+                    </div>
+                    <div class="form-group mb-0">
+                        <div>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">

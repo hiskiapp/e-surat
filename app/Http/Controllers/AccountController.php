@@ -17,6 +17,20 @@ class AccountController extends Controller
         return view('account.index', ['user' => $user]);
     }
 
+    public function whatsapp(Request $request)
+    {
+        $data = auth()->user();
+        $data->phone_number = $request->phone_number;
+        $data->save();
+
+        Activity::add(['page' => 'Account', 'description' => 'Anda Mengganti Nomor Whatsapp']);
+
+        return back()->with([
+            'status' => 'success',
+            'message' => 'Nomor Whatsapp Berhasil Disimpan!'
+        ]);
+    }
+
     public function password()
     {
         return view('account.password');

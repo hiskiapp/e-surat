@@ -72,6 +72,7 @@ class UserController extends Controller
         $user->religion = $request->religion;
         $user->marital_status = $request->marital_status;
         $user->profession = $request->profession;
+        $user->phone_number = $request->phone_number;
         $user->save();
 
         Activity::add(['page' => 'Warga', 'description' => 'Menambah Data Warga: ' . $request->name]);
@@ -140,6 +141,7 @@ class UserController extends Controller
         $user->religion = $request->religion;
         $user->marital_status = $request->marital_status;
         $user->profession = $request->profession;
+        $user->phone_number = $request->phone_number;
         $user->save();
 
         Activity::add(['page' => 'User', 'description' => 'Menmperbarui Data Warga: ' . $user->name]);

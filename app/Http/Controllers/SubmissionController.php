@@ -38,7 +38,7 @@ class SubmissionController extends Controller
 
         return back()->with([
             'status' => 'success',
-            'message' => 'Berhasil Mengajukan Surat! Silahkan Tunggu Petugas Untuk Kerumah Anda.'
+            'message' => 'Berhasil Mengajukan Surat!'
         ]);
     }
 }

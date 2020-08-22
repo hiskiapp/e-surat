@@ -80,6 +80,7 @@ Route::middleware('auth')->group(function () {
 	Route::prefix('account')->group(function () {
 		Route::get('/', 'AccountController@index')->name('account');
 		Route::name('account.')->group(function () {
+			Route::post('whatsapp', 'AccountController@whatsapp')->name('whatsapp');
 			Route::get('password', 'AccountController@password')->name('password');
 			Route::patch('password', 'AccountController@patchPassword')->name('password');
 			Route::get('logs', 'AccountController@logs')->name('logs');

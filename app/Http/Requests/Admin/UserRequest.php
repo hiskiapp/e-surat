@@ -43,6 +43,7 @@ class UserRequest extends FormRequest
                 'religion' => 'in:Islam,Protestan,Katolik,Hindu,Buddha',
                 'marital_status' => 'in:Belum Kawin,Kawin',
                 'profession' => 'required|min:5|max:255',
+                'phone_number' => 'nullable'
             ];
             case 'PUT':
             case 'PATCH':
@@ -58,6 +59,7 @@ class UserRequest extends FormRequest
                 'religion' => 'in:Islam,Protestan,Katolik,Hindu,Buddha',
                 'marital_status' => 'in:Belum Kawin, Kawin',
                 'profession' => 'required|min:5|max:255',
+                'phone_number' => 'nullable'
             ];
             default:break;
         }
