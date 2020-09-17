@@ -68,33 +68,13 @@ class SubmissionController extends Controller
             $message = 'Pengajuan '. $submission->letter->name . ' oleh: ' . $submission->user->name . ' telah ditolak!';
         }
 
-        // $response = Http::withHeaders(['Authorization' => '#'])->post('https://fonnte.com/api/send_message.php', [
-        //     'phone' => '6285155064115',
-        //     'type' => 'text',
-        //     'text' => $message
-        // ]);
-        
-        $curl = curl_init();
-        $token = config('whatsapp.token');
-        $data = [
+        $response = Http::withHeaders(['Authorization' => config('whatsapp.token')])
+        ->asForm()
+        ->post('https://fonnte.com/api/send_message.php', [
             'phone' => $submission->user->phone_number,
             'type' => 'text',
             'text' => $message
-        ];
-
-        curl_setopt($curl, CURLOPT_HTTPHEADER,
-            array(
-                "Authorization: $token",
-            )
-        );
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
-        curl_setopt($curl, CURLOPT_URL, "https://fonnte.com/api/send_message.php");
-        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
-        $result = curl_exec($curl);
-        curl_close($curl);
+        ]);
 
         Activity::add(['page' => 'Warga', 'description' => 'Berhasil Mengubah Status Pengajuan Surat: #' . $id]);
 

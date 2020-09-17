@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="signatory_active" class="col-sm-2 col-form-label">Penandatangan Surat</label>
+                        <label for="signatory_active" class="col-sm-2 col-form-label">Penandatangan Surat *</label>
                         <div class="col-sm-10">
                             <select class="form-control" name="signatory_active" id="signatory_active" required>
                                 <option selected disabled>Select *</option>
@@ -107,6 +107,13 @@
                                     {{ $signatory->name }} - {{ $signatory->position }}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="whatsapp" class="col-sm-2 col-form-label">Whatsapp (Untuk Notifikasi) *</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" type="text" name="whatsapp" id="whatsapp"
+                                value="@setting('whatsapp')" required>
                         </div>
                     </div>
                     <div class="form-group mb-0">

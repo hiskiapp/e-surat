@@ -48,7 +48,7 @@ class InstallProject extends Command
             $this->call('config:cache');
             $this->info('Installing E-Surat Is Completed ! Thank You :)');
             $this->info('--');
-            $this->info("::Administrator Credential::\nURL Login: http://localhost/e-surat/public/admin/login\nUsername: admin\nPassword: 123456");
+            $this->info("::Administrator Credential::\nURL Login: http://localhost:8000/admin/login\nUsername: admin\nPassword: 123456");
         } else {
             $this->info('Setup Aborted !');
             $this->info('Please setting the database configuration for first !');
@@ -59,7 +59,7 @@ class InstallProject extends Command
 
     private function header()
     {
-        $this->info('--------- :===: By @hiskiia :==: ---------------');
+        $this->info('--------- :===: By @hiskiapp :==: ---------------');
         $this->info('====================================================================');
     }
 

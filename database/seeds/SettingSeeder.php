@@ -21,5 +21,6 @@ class SettingSeeder extends Seeder
         Setting::create(['key' => 'postal_code', 'value' => '81154']);
         Setting::create(['key' => 'website', 'value' => 'http://Busungbiu-buleleng.desa.id']);
         Setting::create(['key' => 'signatory_active', 'value' => '1']);
+        Setting::create(['key' => 'whatsapp', 'value' => '6285777727179']);
     }
 }
