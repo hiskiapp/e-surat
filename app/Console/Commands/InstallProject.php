@@ -11,7 +11,7 @@ class InstallProject extends Command
      *
      * @var string
      */
-    protected $signature = 'project:install';
+    protected $signature = 'install';
 
     /**
      * The console command description.

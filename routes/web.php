@@ -60,6 +60,13 @@ Route::prefix(config('app.admin_path'))->name('admin.')->namespace('Admin')->gro
 			Route::get('/', 'SettingController@index');
 			Route::patch('/', 'SettingController@update');
 		});
+
+		Route::prefix('datatables')->name('datatables.')->group(function () {
+			Route::post('users', 'DataController@users')->name('users');
+			Route::post('submissions/pending', 'DataController@submissionsPending')->name('submissions.pending');
+			Route::post('submissions/approved', 'DataController@submissionsApproved')->name('submissions.approved');
+			Route::post('submissions/rejected', 'DataController@submissionsRejected')->name('submissions.rejected');
+		});
 	});
 });
 

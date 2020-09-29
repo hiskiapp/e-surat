@@ -1,4 +1,6 @@
 <!-- JAVASCRIPT -->
+<script>var HOST_URL = "{{ url('/') }}";</script>
+
 <script src="{{ URL::asset('assets/libs/jquery/jquery.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/bootstrap/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('assets/libs/metismenu/metismenu.min.js') }}"></script>

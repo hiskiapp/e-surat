@@ -3,9 +3,12 @@
 @section('title', 'Data Warga')
 
 @section('css')
-<link href="{{ URL::asset('assets/libs/datatables/datatables.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/libs/magnific-popup/magnific-popup.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/libs/datatables/datatables.min.css') }}" rel="stylesheet"
+    type="text/css" />
+<link href="{{ URL::asset('assets/libs/magnific-popup/magnific-popup.min.css') }}"
+    rel="stylesheet" type="text/css" />
+<link href="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.css') }}"
+    rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')
@@ -14,9 +17,9 @@
 <div class="row align-items-center">
     <div class="col-sm-6">
         @component('admin.components.breadcumb')
-        @slot('title') Data Warga @endslot
-        @slot('li_1') Warga @endslot
-        @endcomponent
+            @slot('title') Data Warga @endslot
+                @slot('li_1') Warga @endslot
+                @endcomponent
     </div>
 
     <div class="col-sm-6">
@@ -40,7 +43,8 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
-                                <form class="custom-validation" method="POST" action="{{ route('admin.import.users') }}"
+                                <form class="custom-validation" method="POST"
+                                    action="{{ route('admin.import.users') }}"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group row">
@@ -49,7 +53,8 @@
                                             <input class="form-control" type="file" name="file_import" id="file_import"
                                                 accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
                                             <p class='help-block'>Silahkan Download File Samplenya <a
-                                                    href="{{ asset('import/warga.xlsx') }}">Disini</a>.</p>
+                                                    href="{{ asset('import/warga.xlsx') }}">Disini</a>.
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="form-group mb-0">
@@ -83,47 +88,13 @@
                     style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                     <thead>
                         <tr>
-                            <th>Foto</th>
                             <th>NIK</th>
                             <th>Nama</th>
-                            <th>TTL</th>
                             <th>Jenis Kelamin</th>
                             <th>Alamat</th>
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        @foreach($users as $user)
-                        <tr>
-                            <td>
-                                <a class="image-popup-no-margins" href="{{ asset($user->photo) }}">
-                                    <img class="img-fluid" alt="{{ $user->name }}" src="{{ asset($user->photo) }}"
-                                        width="24">
-                                </a>
-                            </td>
-                            <td>{{ $user->sin }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->getPsb() }}</td>
-                            <td>{{ $user->gender }}</td>
-                            <td>{{ $user->address ?? '-' }}</td>
-                            <td>
-                                <a class="btn btn-sm btn-warning waves-effect waves-light"
-                                    href="{{ route('admin.users.edit', $user->id) }}" role="button"><i
-                                        class="mdi mdi-grease-pencil"></i></a>
-                                <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}"
-                                    class="d-inline form-delete">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light"><i
-                                            class="mdi mdi-trash-can"></i></button>
-                                </form>
-                                <a class="btn btn-sm btn-info waves-effect waves-light"
-                                    href="{{ route('admin.users.show', $user->id) }}" role="button"><i
-                                        class="mdi mdi mdi-eye-circle"></i></a>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
                 </table>
 
             </div>
@@ -136,14 +107,60 @@
 @section('script')
 
 <!-- Plugins js -->
-<script src="{{ URL::asset('assets/libs/datatables/datatables.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/magnific-popup/magnific-popup.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js')}}"></script>
-
-<script src="{{ URL::asset('assets/js/pages/datatables.init.js')}}"></script>
-<script src="{{ URL::asset('assets/js/pages/lightbox.init.js')}}"></script>
+<script src="{{ URL::asset('assets/libs/datatables/datatables.min.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/magnific-popup/magnific-popup.min.js') }}"></script>
+<script src="{{ URL::asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ URL::asset('assets/js/pages/lightbox.init.js') }}"></script>
 
 <script type="text/javascript">
+    $(function () {
+        $('#datatable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: HOST_URL + "/admin/datatables/users",
+                dataType: "json",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                }
+            },
+            columns: [
+                {
+                    data: 'sin',
+                },
+                {
+                    data: 'name',
+                },
+                {
+                    data: 'gender',
+                },
+                {
+                    data: 'address',
+                },
+                {
+                    data: 'id',
+                    render: function (data, type, row) {
+                        return '\
+                        <a class="btn btn-sm btn-warning waves-effect waves-light" href="' + HOST_URL + '/admin/users/' + data + '/edit" role="button">\
+                            <i class="mdi mdi-grease-pencil"></i>\
+                        </a>\
+                        <form method="POST" action="' + HOST_URL + '/admin/users/' + data + '"class="d-inline form-delete">\
+                        @csrf\
+                        @method('DELETE')\
+                        <button type="submit" class="btn btn-sm btn-danger waves-effect waves-light">\
+                            <i class="mdi mdi-trash-can"></i>\
+                        </button>\
+                        </form>\
+                        <a class="btn btn-sm btn-info waves-effect waves-light" href="' + HOST_URL + '/admin/users/show/' + data + '" role="button">\
+                            <i class="mdi mdi mdi-eye-circle"></i>\
+                        </a>\
+                        ';
+                    }
+                }
+            ]
+        });
+    });
     $(document).on('submit', '.form-delete', function (e) {
         var form = this;
         e.preventDefault();
