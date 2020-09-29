@@ -8,9 +8,6 @@
     @endsection
 
     @section('content')
-    <div class="home-btn d-none d-sm-block">
-        <a href="{{ route('home') }}" class="text-dark"><i class="fas fa-home h2"></i></a>
-    </div>
     <div class="account-pages my-5 pt-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -18,10 +15,10 @@
                     <div class="card overflow-hidden">
                         <div class="bg-primary">
                             <div class="text-primary text-center p-4">
-                                <h5 class="text-white font-size-20">Welcome Back !</h5>
-                                <p class="text-white-50">Sign in to start session.</p>
-                                <a href="index" class="logo logo-admin">
-                                    <img src="{{ asset('assets/images/logo-sm.png') }}" height="24" alt="logo">
+                                <h5 class="text-white font-size-20">Selamat Datang di Sistem E-Surat Busungbiu</h5>
+                                <p class="text-white-50">Silahkan admin login terlebih dahulu.</p>
+                                <a href="#" class="logo logo-admin">
+                                    <img src="{{ asset('assets/images/busungbiu-logo.png') }}" height="50" alt="logo">
                                 </a>
                             </div>
                         </div>
@@ -61,13 +58,12 @@
                                             <div class="custom-control custom-checkbox">
                                                 <input type="checkbox" class="custom-control-input"
                                                     id="customControlInline">
-                                                <label class="custom-control-label" for="customControlInline">Remember
-                                                    me</label>
+                                                <label class="custom-control-label" for="customControlInline">Ingatkan Saya</label>
                                             </div>
                                         </div>
                                         <div class="col-sm-6 text-right">
                                             <button class="btn btn-primary w-md waves-effect waves-light"
-                                                type="submit">Log In</button>
+                                                type="submit">Masuk</button>
                                         </div>
                                     </div>
                                 </form>
@@ -79,8 +75,8 @@
                     <div class="mt-5 text-center">
                         <p class="mb-0">© <script>
                                 document.write(new Date().getFullYear())
-                            </script> {{ config('app.name') }}. Crafted with <i class="mdi mdi-heart text-danger"></i>
-                            by Hiskia</p>
+                            </script> {{ config('app.name') }} Pemerintah Desa Busungbiu <i class="mdi mdi-heart text-danger"></i>
+                            PKL UNDIKSHA</p>
                     </div>
 
                 </div>

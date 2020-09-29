@@ -63,7 +63,7 @@ class SubmissionController extends Controller
         $submission->save();
 
         if ($status == 1) {
-            $message = 'Pengajuan '. $submission->letter->name . ' oleh: ' . $submission->user->name . ' telah disetujui!';
+            $message = 'Pengajuan '. $submission->letter->name . ' oleh: ' . $submission->user->name . ' telah disetujui. Silakan datang ke Kantor Desa dengan Menggunakan Masker!';
         }else{
             $message = 'Pengajuan '. $submission->letter->name . ' oleh: ' . $submission->user->name . ' telah ditolak!';
         }

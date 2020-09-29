@@ -38,7 +38,7 @@ class UserRequest extends FormRequest
                 'password' => 'nullable|min:6|max:255',
                 'birth_place' => 'required|min:5|max:255',
                 'birth_date' => 'nullable|date',
-                'gender' => 'in:Laki - Laki, Perempuan',
+                'gender' => 'in:Laki - Laki,Perempuan',
                 'address' => 'nullable|min:5',
                 'religion' => 'in:Islam,Protestan,Katolik,Hindu,Buddha',
                 'marital_status' => 'in:Belum Kawin,Kawin',
@@ -57,7 +57,7 @@ class UserRequest extends FormRequest
                 'gender' => 'in:Laki - Laki,Perempuan',
                 'address' => 'nullable|min:5',
                 'religion' => 'in:Islam,Protestan,Katolik,Hindu,Buddha',
-                'marital_status' => 'in:Belum Kawin, Kawin',
+                'marital_status' => 'in:Belum Kawin,Kawin',
                 'profession' => 'required|min:5|max:255',
                 'phone_number' => 'nullable'
             ];

@@ -60,6 +60,9 @@
             <tr class='active'>
               <td colspan="2"><strong><i class='fa fa-bars'></i> Detail Surat Lanjutan</strong></td>
             </tr>
+                        <tr class='active'>
+              <td colspan="2"><strong>(Masukan Nomor Surat Dahulu Kemudian Save)</strong></td>
+            </tr>
           </tbody>
         </table>
         <form class="custom-validation" method="POST" action="{{ route('admin.submissions.update', $submission->id) }}"
@@ -101,7 +104,7 @@
             <div>
               <button type="submit" class="btn btn-primary waves-effect waves-light mr-1">
                 <i class="mdi mdi-pencil"></i>
-                Edit
+                Save
               </button>
               <button type="submit" form="form-print" class="btn btn-warning waves-effect waves-light mr-1"><i
                   class="mdi mdi-printer-check"></i>

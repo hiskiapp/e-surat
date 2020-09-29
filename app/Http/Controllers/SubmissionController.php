@@ -40,14 +40,14 @@ class SubmissionController extends Controller
         ->post('https://fonnte.com/api/send_message.php', [
             'phone' => setting('whatsapp'),
             'type' => 'text',
-            'text' => 'Ada Pengajuan Surat Baru Oleh: ' . auth()->user()->name . ' Dan Surat Yang Diajukan Adalah: ' . $letter->name . '. Mohon Segera Ditinjau, Terimakasih.'
+            'text' => 'Ada Pengajuan Surat Baru Oleh: ' . auth()->user()->name . ' Dan Surat Yang Diajukan Adalah: ' . $letter->name . '. Mohon Segera Ditinjau, Terimakasih. E-Surat Pemerintah Desa Busungbiu'
         ]);
 
         Activity::add(['page' => 'Pengajuan Surat', 'description' => 'Mengajukan Surat Baru: ' . $letter->name]);
 
         return back()->with([
             'status' => 'success',
-            'message' => 'Berhasil Mengajukan Surat!'
+            'message' => 'Berhasil Mengajukan Surat! Mohon tunggu notifikasi via WhatsApp'
         ]);
     }
 }

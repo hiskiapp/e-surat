@@ -23,7 +23,7 @@
                 <table class='table table-bordered'>
                     <tbody>
                         <tr class='active'>
-                            <td colspan="2"><strong><i class='fa fa-bars'></i> Kumpulan Helper Untuk Surat</strong></td>
+                            <td colspan="2"><strong><i class='fa fa-bars'></i> Kumpulan Helper Untuk Surat. Untuk tutorial lengkap silakan klik <a href ="https://aguswahyu.com/panduan-esurat-admin/" target="_blank">DISINI</strong></td>
                         </tr>
                         <tr>
                             <td width="25%"><strong>Nama Penandatangan</strong></td>

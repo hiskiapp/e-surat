@@ -122,7 +122,7 @@
                         <label for="phone_number" class="col-sm-2 col-form-label">Phone Number</label>
                         <div class="col-sm-10">
                             <input class="form-control" type="text" name="phone_number" id="phone_number"
-                                value="{{ old('phone_number', '628') }}" data-parsley-length="[5,255]" required>
+                                value="{{ old('phone_number', '628') }}" data-parsley-length="[3,255]" >
                         </div>
                     </div>
                     <div class="form-group row">
