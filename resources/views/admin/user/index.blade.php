@@ -152,7 +152,7 @@
                             <i class="mdi mdi-trash-can"></i>\
                         </button>\
                         </form>\
-                        <a class="btn btn-sm btn-info waves-effect waves-light" href="' + HOST_URL + '/admin/users/show/' + data + '" role="button">\
+                        <a class="btn btn-sm btn-info waves-effect waves-light" href="' + HOST_URL + '/admin/users/' + data + '" role="button">\
                             <i class="mdi mdi mdi-eye-circle"></i>\
                         </a>\
                         ';
