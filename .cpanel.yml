@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/u5775975/
-    - /bin/cp -r * $DEPLOYPATH
-    - /bin/cp ./public/js/*.js $DEPLOYPATH/public_html/js
-    - /bin/cp ./public/css/*.css $DEPLOYPATH/public_html/css
+    -export DEPLOYPATH=/home/u5775975/
+    -/bin/cp -R * $DEPLOYPATH
+    -/bin/cp ./public/js/*.js $DEPLOYPATH/public_html/js
+    -/bin/cp ./public/css/*.css $DEPLOYPATH/public_html/css
