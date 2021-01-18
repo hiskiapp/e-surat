@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    -export DEPLOYPATH=/home/u5775975/
+    -export DEPLOYPATH=/home/u5775975/public_html/surat
     -/bin/cp -R * $DEPLOYPATH
-    -/bin/cp ./public/js/*.js $DEPLOYPATH/public_html/js
-    -/bin/cp ./public/css/*.css $DEPLOYPATH/public_html/css
+    -/bin/cp ./public/js/*.js $DEPLOYPATH/js
+    -/bin/cp ./public/css/*.css $DEPLOYPATH/css
